@@ -1,9 +1,10 @@
-import React, { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useContext, useRef } from "react";
+import { Link, useNavigate, } from "react-router-dom";
 import { AuthContext } from "../Context/authContext";
 import HeaderPhoto from "../Components/assets/Header/Header.png"
 
 const Header = () => {
+    const inputRef = useRef(null);
     const navigate = useNavigate()
     const { user, logout } = useContext(AuthContext);
     console.log("user in header", user)
@@ -220,6 +221,7 @@ const Header = () => {
                                 {dropdownOpen && (
                                     <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-lg z-10">
                                         <Link
+                                            ref={inputRef}
                                             to="/profile"
                                             className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
                                         >
