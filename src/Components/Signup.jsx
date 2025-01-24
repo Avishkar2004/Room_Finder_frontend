@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import debounce from 'lodash.debounce';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -14,6 +15,14 @@ const Signup = () => {
     });
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
+
+
+    const [showPassword, setShowPassword] = useState(false)
+
+
+    const handlePasswordToggle = () => {
+        setShowPassword(!showPassword)
+    }
 
     // Function to handle input changes and call validation with debounce
     const handleChange = (e) => {
@@ -83,9 +92,9 @@ const Signup = () => {
                         />
                         {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
                     </div>
-                    <div className="mb-6">
+                    <div className="mb-6 relative">
                         <input
-                            type="password"
+                            type={showPassword ? "text" : "password"}
                             name="password"
                             value={formData.password}
                             onChange={handleChange}
@@ -93,6 +102,13 @@ const Signup = () => {
                             className="p-3 border rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                             disabled={loading}
                         />
+                        <button
+                            type='button'
+                            onClick={handlePasswordToggle}
+                            className='absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500'
+                        >
+                            {showPassword ?  <Visibility /> : <VisibilityOff />}
+                        </button>
                     </div>
                     <button
                         type="submit"

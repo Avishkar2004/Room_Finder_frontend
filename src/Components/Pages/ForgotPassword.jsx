@@ -31,14 +31,13 @@ const ForgotPassword = () => {
         }
     };
 
+
+
     const handlePasswordReset = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError('');
         setMessage('');
-
-
-
         setTimeout(async () => {
             try {
                 // Send request to verify OTP and reset password
@@ -48,7 +47,6 @@ const ForgotPassword = () => {
                     newPassword
                 });
                 setMessage(response.data.message);
-
                 navigate("/login")
 
             } catch (err) {

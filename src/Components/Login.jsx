@@ -32,7 +32,7 @@ const Login = () => {
     setError('');
     try {
       await login(formData);
-      alert('Login successful!');
+      // alert('Login successful!');
       window.location.reload(navigate('/')) // This might not work as expected
     } catch (err) {
       console.error(err);
@@ -84,7 +84,7 @@ const Login = () => {
               onClick={handlePasswordToggle}
               className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500"
             >
-              {showPassword ? <VisibilityOff /> : <Visibility />} {/* Conditionally render the eye icons */}
+              {showPassword ? <Visibility /> : <VisibilityOff />} {/* Conditionally render the eye icons */}
             </button>
           </div>
           <button
