@@ -23,40 +23,28 @@ const PropertySearch = () => {
     switch (value) {
       case 0: // Buy
         return (
-          <div className="flex items-center space-x-2 bg-[#fef0da] p-3 rounded shadow">
-            <button className="flex items-center text-gray-600 hover:text-blue-500">
+          <div className="flex space-x-2 bg-[#fef0da] p-2 rounded shadow">
+            <button className="flex items-center text-gray-800 hover:text-blue-500">
               <HomeIcon className="w-4 h-4 mr-1" />
-              <span className='text-sm text-gray-800'>
-                Home Interiors
-              </span>
+              Home Interiors
             </button>
-            <div className="h-6 border-l border-gray-600" /> {/* Vertical line */}
-            <button className="flex items-center text-gray-600 hover:text-blue-500">
+            <button className="flex items-center text-gray-800 hover:text-blue-500">
               <LocalShippingIcon className="w-4 h-4 mr-1" />
-              <span className='text-sm text-gray-800'>
-                45-Days Guarantee
-              </span>
+              45-Days Guarantee
             </button>
           </div>
         );
       case 1: // Rent
       case 2: // Commercial
         return (
-          <div className="flex items-center space-x-2 bg-[#fef0da] p-3 rounded shadow">
-            <button className="flex items-center text-gray-500 hover:text-blue-500">
+          <div className="flex space-x-2 bg-[#fef0da] p-2 rounded shadow">
+            <button className="flex items-center text-gray-800 hover:text-blue-500">
               <DescriptionIcon className="w-4 h-4 mr-1" />
-              <span className='text-sm text-gray-800'>
-                Rental Agreement
-              </span>
-
+              Rental Agreement
             </button>
-            <div className="h-6 border-l border-gray-600" /> {/* Vertical line */}
-            <button className="flex items-center text-gray-500 hover:text-blue-500">
+            <button className="flex items-center text-gray-800 hover:text-blue-500">
               <DeliveryDiningIcon className="w-4 h-4 mr-1" />
-              <span className='text-sm text-gray-800'>
-                Next Day Delivery
-              </span>
-
+              Next Day Delivery
             </button>
           </div>
         );

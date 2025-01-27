@@ -33,15 +33,16 @@ const Signup = () => {
         debouncedValidate({ ...formData, [e.target.name]: e.target.value });
     };
 
-    // Function to validate username and email on the server
+    // Function to check username and email is available in the 
     const validateField = async (data) => {
         try {
             const response = await axios.post('http://localhost:5000/api/auth/check-availability', data);
-            setErrors({ ...errors, [response.data.field]: response.data.message });
+            setErrors({ ...errors, [response.data.field]: response.data.message })
         } catch (err) {
-            setErrors({ ...errors, [err.response.data.field]: err.response.data.message });
+            const errorResponse = err.response?.data || {} // Safely access response
+            setErrors({ ...errors, [errorResponse.field || "general"]: errorResponse.message || "Validation failed" })
         }
-    };
+    }
 
     // Debounced version of validateField to minimize API calls
     const debouncedValidate = useCallback(debounce(validateField, 500), []);
@@ -107,7 +108,7 @@ const Signup = () => {
                             onClick={handlePasswordToggle}
                             className='absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500'
                         >
-                            {showPassword ?  <Visibility /> : <VisibilityOff />}
+                            {showPassword ? <Visibility /> : <VisibilityOff />}
                         </button>
                     </div>
                     <button
