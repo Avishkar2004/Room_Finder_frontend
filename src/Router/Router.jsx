@@ -6,7 +6,7 @@ import Login from '../Components/Login';
 import PostFlat from '../Components/Pages/PostFlat';
 // import LookingFor from '../Components/Pages/LookingFor';
 // import Reviews from '../Components/Pages/Reviews';
-// import Room from '../Components/Pages/rooms/Room';
+import Room from '../Components/Pages/rooms/Room';
 import PropertySearch from '../Components/Pages/PropertySearch ';
 import WhyUse from '../Components/Pages/WhyUse';
 import Business from '../Components/Pages/Business ';
@@ -17,6 +17,7 @@ import Services from '../Components/Pages/Services';
 import Footer from '../Components/Pages/Footer';
 import ForgotPassword from '../Components/Pages/ForgotPassword';
 import GoogleCallback from '../Components/GoogleCallback';
+import SellorRentProperty from '../Components/Pages/SellorRentProperty';
 
 const AppRouter = () => {
     return (
@@ -28,7 +29,7 @@ const AppRouter = () => {
                 <Route path='/auth/google/callback' element={GoogleCallback} />
                 <Route path='/forgot-password' element={<ForgotPassword />} />
                 <Route path="/postaboutroom" element={<PostFlat />} />
-                {/* Additional routes can be added here */}
+                <Route path="/list-your-property-for-rent-sale" element={<SellorRentProperty />} />
             </Routes>
             <ConditionalCarousel />
         </Router>
@@ -43,6 +44,7 @@ const ConditionalCarousel = () => {
         return (
             <>
                 <PropertySearch />
+                <Room />
                 <WhyUse />
                 <Business />
                 <Testimonials />
@@ -51,7 +53,6 @@ const ConditionalCarousel = () => {
                 <Services />
                 <Footer />
                 {/* <LookingFor /> */}
-                {/* <Room /> */}
                 {/* <Reviews /> */}
             </>
         );

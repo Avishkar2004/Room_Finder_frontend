@@ -4,6 +4,7 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import DescriptionIcon from '@mui/icons-material/Description';
 import HomeIcon from '@mui/icons-material/Home';
 import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
+import { Link } from 'react-router-dom';
 
 const PropertySearch = () => {
   const [value, setValue] = useState(1); // Default to 'Rent'
@@ -240,15 +241,23 @@ const PropertySearch = () => {
           )}
         </div>
       </div>
+      <div className="flex flex-col items-center justify-center space-y-4">
+        {/* Text with lines */}
+        <div className="flex items-center gap-4">
+          <div className="border-t border-gray-300 w-12"></div>
+          <span className="text-gray-700 font-medium text-lg">Are you a Property Owner?</span>
+          <div className="border-t border-gray-300 w-12"></div>
+        </div>
+
+        {/* Button */}
+        <Link to="/list-your-property-for-rent-sale" className="bg-[#009587] text-white py-2 px-6 text-sm font-medium rounded-md hover:bg-[#007c6f] transition duration-200 shadow">
+          Post Free Property Ad
+        </Link>
+      </div>
+
+
     </div>
   );
 };
 
 export default PropertySearch;
-
-
-
-
-
-
-
