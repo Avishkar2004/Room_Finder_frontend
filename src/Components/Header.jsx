@@ -22,8 +22,9 @@ const Header = () => {
         <header className="w-full flex justify-between items-center px-6 py-4 shadow-md bg-white">
             {/* Logo on the left */}
             <div className="flex items-center gap-2">
-
+                <Link to="/">
                 <img src="https://assets.nobroker.in/static/img/logos/nb_logo_new_trans.svg" alt="No Broker" className="w-44 h-11" />
+                </Link>
             </div>
 
             {/* Navigation Options and Hamburger Menu shifted to the right */}
