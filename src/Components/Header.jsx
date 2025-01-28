@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../Context/authContext";
 import {
     AccountCircle as AccountCircleIcon,
-    ExitToApp as ExitToAppIcon,
     KeyboardArrowDown as KeyboardArrowDownIcon,
     KeyboardArrowUp as KeyboardArrowUpIcon,
 } from "@mui/icons-material";

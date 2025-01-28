@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Context/authContext";
 
 const SellorRentProperty = () => {
+  const { user } = useContext(AuthContext);
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const [selectedPropertyType, setSelectedPropertyType] = useState("Resident");
   const [selectedAdType, setSelectedAdType] = useState("Rent");
@@ -127,68 +129,12 @@ const SellorRentProperty = () => {
 
         {/* Get Started Section (Right Side) */}
         <div className="flex-1 bg-white p-6 rounded-lg shadow-md">
-          <form className="space-y-3" onClick={handleSubmit}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Enter your name"
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#009587] focus:border-[#009587]"
-                />
-                {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
-              </div>
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Enter your email"
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#009587] focus:border-[#009587]"
-                />
-                {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
-              </div>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label
-                  htmlFor="mobile"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Mobile Number
-                </label>
-                <input
-                  type="number"
-                  id="mobile"
-                  name="mobile"
-                  value={formData.mobile}
-                  onChange={handleChange}
-                  placeholder="Enter your mobile number"
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#009587] focus:border-[#009587]"
-                />
-                {errors.mobile && <p className="text-red-500 text-sm">{errors.mobile}</p>}
-              </div>
-              <div>
+          {user ? (
+            <div className="flex justify-center items-center">
+              <div className="w-full max-w-md">
                 <label
                   htmlFor="city"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-700 mb-2"
                 >
                   Select City
                 </label>
@@ -204,7 +150,86 @@ const SellorRentProperty = () => {
                 </select>
               </div>
             </div>
-          </form>
+          ) : (
+            <form className="space-y-3" onClick={handleSubmit}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Enter your name"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#009587] focus:border-[#009587]"
+                  />
+                  {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+                </div>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Enter your email"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#009587] focus:border-[#009587]"
+                  />
+                  {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label
+                    htmlFor="mobile"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Mobile Number
+                  </label>
+                  <input
+                    type="number"
+                    id="mobile"
+                    name="mobile"
+                    value={formData.mobile}
+                    onChange={handleChange}
+                    placeholder="Enter your mobile number"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#009587] focus:border-[#009587]"
+                  />
+                  {errors.mobile && <p className="text-red-500 text-sm">{errors.mobile}</p>}
+                </div>
+                <div>
+                  <label
+                    htmlFor="city"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Select City
+                  </label>
+                  <select
+                    id="city"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleChange}
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#009587] focus:border-[#009587]"
+                  >
+                    <option value="Pune">Pune</option>
+                    <option value="Mumbai">Mumbai</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          )}
 
           {/* Property Type Selection */}
           <div className="flex items-center justify-center">
