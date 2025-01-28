@@ -130,7 +130,10 @@ const SellorRentProperty = () => {
         {/* Get Started Section (Right Side) */}
         <div className="flex-1 bg-white p-6 rounded-lg shadow-md">
           {user ? (
-            <div className="flex justify-center items-center">
+            <div className="flex flex-col items-center space-y-4">
+              <span className="font-semibold text-center">
+                You have already posted 1 property on NoBroker. <a href="/your-properties" className="text-[#009587] underline">View all</a>
+              </span>
               <div className="w-full max-w-md">
                 <label
                   htmlFor="city"
@@ -143,13 +146,14 @@ const SellorRentProperty = () => {
                   name="city"
                   value={formData.city}
                   onChange={handleChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#009587] focus:border-[#009587]"
+                  className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#009587] focus:border-[#009587]"
                 >
                   <option value="Pune">Pune</option>
                   <option value="Mumbai">Mumbai</option>
                 </select>
               </div>
             </div>
+
           ) : (
             <form className="space-y-3" onClick={handleSubmit}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
