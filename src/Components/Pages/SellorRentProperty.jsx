@@ -155,7 +155,7 @@ const SellorRentProperty = () => {
             </div>
 
           ) : (
-            <form className="space-y-3" onClick={handleSubmit}>
+            <form className="space-y-3" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label
