@@ -13,7 +13,7 @@ const RentalDetails = () => {
     };
     return (
         <div>
-            <h1 className="text-md font-semibold  text-[#009587]">Provide rental details about your property
+            <h1 className="text-sm font-semibold  text-[#009587]">Provide rental details about your property
             </h1>
             <div className="border-t border-gray-300 my-4"></div>
 

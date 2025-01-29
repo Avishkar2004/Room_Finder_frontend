@@ -7,7 +7,7 @@ const PropertyDetails = () => {
     };
     return (
         <div className="flex-1 p-6">
-            <h1 className="text-md font-semibold  text-[#009587]">Property Details</h1>
+            <h1 className="text-sm font-semibold  text-[#009587]">Property Details</h1>
             <div className="border-t border-gray-300 my-4"></div>
             <form>
                 <div className="space-y-6">
