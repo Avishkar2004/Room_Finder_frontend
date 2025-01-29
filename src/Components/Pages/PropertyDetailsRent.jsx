@@ -1,12 +1,33 @@
 import React, { useState, useEffect } from "react";
 import ProgressBar from "./ProgressBar";
+import LocalityDetails from "./LocalityDetails";
+import RentalDetails from "./RentalDetails";
+import Amenities from "./Amenities";
+import Gallery from "./Gallery";
+import Schedule from "./Schedule";
+import PropertyDetails from "./PropertyDetails";
 
 const PropertyDetailsRent = () => {
-    const [apartmentType, setApartmentType] = useState("")
+    const [selectedTab, setSelectedTab] = useState("PropertyDetails")
 
-    const handleApartmentTypeChange = (e) => {
-        setApartmentType(e.target.value);
-    };
+    const renderComponent = () => {
+        switch (selectedTab) {
+            case "PropertyDetails":
+                return <PropertyDetails />;
+            case "LocalityDetails":
+                return <LocalityDetails />
+            case "RentalDetails":
+                return <RentalDetails />
+            case "Amenities":
+                return <Amenities />
+            case "Gallery":
+                return <Gallery />
+            case "Schedule":
+                return <Schedule />
+            default:
+                return <PropertyDetails />;
+        }
+    }
 
     return (
         <div className="flex justify-center items-center bg-gray-100">
@@ -14,167 +35,29 @@ const PropertyDetailsRent = () => {
                 {/* Left Sidebar */}
                 <div className="w-1/4 p-6 rounded-l-lg shadow-lg text-gray-600">
                     <ul className="space-y-6">
-                        <li className="flex items-center cursor-pointer hover:text-blue-500 hover:bg-blue-100 p-3 rounded-lg transition duration-300">
-                            <img src="https://assets.nobroker.in/nb-new/public/MaterialIcons/HomeOutlined.png" alt="Property Details" className="w-6 h-6 mr-3" />
-                            <span>Property Details</span>
-                        </li>
-                        <li className="flex items-center cursor-pointer hover:text-blue-500 hover:bg-blue-100 p-3 rounded-lg transition duration-300">
-                            <img src="https://assets.nobroker.in/nb-new/public/MaterialIcons/PinDropOutlined.png" alt="Locality Details" className="w-6 h-6 mr-3" />
-                            <span>Locality Details</span>
-                        </li>
-                        <li className="flex items-center cursor-pointer hover:text-blue-500 hover:bg-blue-100 p-3 rounded-lg transition duration-300">
-                            <img src="https://assets.nobroker.in/nb-new/public/MaterialIcons/Business.png" alt="Rental Details" className="w-6 h-6 mr-3" />
-                            <span>Rental Details</span>
-                        </li>
-                        <li className="flex items-center cursor-pointer hover:text-blue-500 hover:bg-blue-100 p-3 rounded-lg transition duration-300">
-                            <img src="https://assets.nobroker.in/nb-new/public/MaterialIcons/KitchenOutlined.png" alt="Amenities" className="w-6 h-6 mr-3" />
-                            <span>Amenities</span>
-                        </li>
-                        <li className="flex items-center cursor-pointer hover:text-blue-500 hover:bg-blue-100 p-3 rounded-lg transition duration-300">
-                            <img src="https://assets.nobroker.in/nb-new/public/MaterialIcons/LinkedCameraOutlined.png" alt="Gallery" className="w-6 h-6 mr-3" />
-                            <span>Gallery</span>
-                        </li>
-                        <li className="flex items-center cursor-pointer hover:text-blue-500 hover:bg-blue-100 p-3 rounded-lg transition duration-300">
-                            <img src="https://assets.nobroker.in/nb-new/public/MaterialIcons/DateRangeOutlined.png" alt="Schedule" className="w-6 h-6 mr-3" />
-                            <span>Schedule</span>
-                        </li>
+                        {[
+                            { name: "Property Details", key: "PropertyDetails", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/HomeOutlined.png" },
+                            { name: "Locality Details", key: "LocalityDetails", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/PinDropOutlined.png" },
+                            { name: "Rental Details", key: "RentalDetails", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/Business.png" },
+                            { name: "Amenities", key: "Amenities", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/KitchenOutlined.png" },
+                            { name: "Gallery", key: "Gallery", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/LinkedCameraOutlined.png" },
+                            { name: "Schedule", key: "Schedule", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/DateRangeOutlined.png" },
+                        ].map((item) => (
+                            <li
+                                key={item.key}
+                                className={`flex items-center cursor-pointer p-3 rounded-lg transition duration-300 ${selectedTab === item.key ? "bg-blue-100 text-blue-500 font-semibold" : "hover:text-blue-500 hover:bg-blue-100"
+                                    }`}
+                                onClick={() => setSelectedTab(item.key)}
+                            >
+                                <img src={item.icon} alt={item.name} className="w-6 h-6 mr-3" />
+                                <span>{item.name}</span>
+                            </li>
+                        ))}
                     </ul>
                 </div>
 
+                <div className="flex-1 p-6">{renderComponent()}</div>
 
-                {/* Right Content */}
-                <div className="flex-1 p-6">
-                    <h1 className="text-md font-semibold mb-6 text-[#009587]">Property Details</h1>
-                    <div className="border-t border-gray-300 my-4"></div>
-
-                    {/* Property Details Form */}
-                    <form>
-                        <div className="space-y-6">
-                            {/* Apartment Type */}
-                            <div className="flex items-center space-x-8"> {/* Added flex and space-x for horizontal layout */}
-                                <div className="w-[40%]">
-                                    <label className="block text-sm font-medium text-gray-700">Apartment Type*</label>
-                                    <div className="flex items-center p-2 mt-2 border border-gray-300 rounded-lg focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200 transition duration-200">
-                                        <span>🏢</span>
-                                        <select className="w-full p-2" value={apartmentType} onChange={handleApartmentTypeChange}>
-                                            <option>Select</option>
-                                            <option>Apartment</option>
-                                            <option>Independent House/Villa</option>
-                                            <option>Gated Community Villa</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                {/* Conditionally Render New Input for Apartment/Villa Name */}
-                                {(apartmentType === 'Apartment' || apartmentType === 'Gated Community Villa') && (
-                                    <div className="w-[40]"> {/* Set the input box width */}
-                                        <label className="block text-xs font-medium text-gray-700">
-                                            Apartment Name <span className="text-red-500">(Please select from dropdown)</span>*
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="p-2 mt-2 border border-gray-300 rounded-lg focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200 transition duration-200"
-                                            placeholder="e.g.Ajmera Enclave"
-                                        />
-                                    </div>
-                                )}
-                            </div>
-
-
-                            {/* Type, Floor, and Total Floors in a row */}
-                            <div className="grid grid-cols-3 gap-8">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700">BHK Type*</label>
-                                    <select className="w-full p-2 mt-2 border border-gray-300 rounded-lg focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200 transition duration-200">
-                                        <option>Select</option>
-                                        <option>1 BHK</option>
-                                        <option>2 BHK</option>
-                                        <option>3 BHK</option>
-                                        <option>4 BHK</option>
-                                        <option>4+ BHK</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700">Floor*</label>
-                                    <select className="w-full p-2 mt-2 border border-gray-300 rounded-lg focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200 transition duration-200">
-                                        <option>Select</option>
-                                        <option>Ground Floor</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
-                                </div>
-
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700">Total Floors*</label>
-                                    <select className="w-full p-2 mt-2 border border-gray-300 rounded-lg focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200 transition duration-200">
-                                        <option>Select</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5+</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            {/* Property Age, Facing, and Built Up Area */}
-                            <div className="space-y-6">
-
-
-                                <div className="grid grid-cols-2 gap-8">
-                                    {/* Property Age */}
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700">Property Age*</label>
-                                        <div className="flex items-center mt-2 border border-gray-300 rounded-lg focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200 transition duration-200">
-                                            <select className="w-full p-2 bg-transparent focus:outline-none">
-                                                <option className="text-gray-400">Select</option>
-                                                <option>Less than a year</option>
-                                                <option>1 to 3 years</option>
-                                                <option>3 to 5 years</option>
-                                                <option>5 to 10 years</option>
-                                                <option>More than 10 years</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    {/* Facing */}
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700">Facing</label>
-                                        <div className="flex items-center mt-2 border border-gray-300 rounded-lg focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200 transition duration-200">
-                                            {/* <span className="mr-2 text-gray-500">🌅</span> */}
-                                            <img src="https://www.nobroker.in/static/img/postYourProperty/icon/facing.png" alt="Property Facing" className="mr-2" />
-                                            <select className="w-full p-2 bg-transparent focus:outline-none">
-                                                <option className="text-gray-400">Property Facing</option>
-                                                <option>North</option>
-                                                <option>South</option>
-                                                <option>East</option>
-                                                <option>West</option>
-                                                <option>North-East</option>
-                                                <option>South-East</option>
-                                                <option>North-West</option>
-                                                <option>South-West</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                {/* Built Up Area */}
-                                <div className="w-1/3">
-                                    <label className="block text-sm font-medium text-gray-700">Built Up Area*</label>
-                                    <div className="flex items-center">
-                                        <input
-                                            type="text"
-                                            className="p-2 w-full mt-2 border border-gray-300 rounded-lg focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200 transition duration-200"
-                                            placeholder="Enter Built Up Area"
-                                        />
-                                        <span className="ml-2">Sq.ft</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
 
                 {/* Right Side Details */}
                 <div className="w-1/5 -mt-3 p-6 bg-white shadow-md">
@@ -187,7 +70,6 @@ const PropertyDetailsRent = () => {
                             </div>
                             <img src="https://assets.nobroker.in/nb-new/public/Pyp-Form/rentalAgreement.png" alt="Rental Agreement" className="w-12 h-12" />
                         </div>
-
                         {/* No Need to Visit Government Office Section */}
                         <div className="flex flex-col items-center  w-full">
                             <div className="text-center">
@@ -203,7 +85,6 @@ const PropertyDetailsRent = () => {
                             <span className="text-sm text-gray-600">Get Tenants Faster</span>
                             <span className="block text-xs text-gray-800 mt-1">Subscribe to our owner plans and find Tenants quickly and with ease</span>
                         </div>
-
                         {/* Features Grid */}
                         <div className="grid grid-cols-2 gap-4 mt-4">
                             {/* Privacy */}
