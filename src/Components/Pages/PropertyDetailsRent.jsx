@@ -2,11 +2,17 @@ import React, { useState, useEffect } from "react";
 import ProgressBar from "./ProgressBar";
 
 const PropertyDetailsRent = () => {
+    const [apartmentType, setApartmentType] = useState("")
+
+    const handleApartmentTypeChange = (e) => {
+        setApartmentType(e.target.value);
+    };
+
     return (
         <div className="flex justify-center items-center bg-gray-100">
             <div className="flex mt-4 bg-white p-6 rounded-lg shadow-lg w-3/4">
                 {/* Left Sidebar */}
-                <div className="w-1/4 p-6 rounded-l-lg shadow-lg">
+                <div className="w-1/4 p-6 rounded-l-lg shadow-lg text-gray-600">
                     <ul className="space-y-6">
                         <li className="flex items-center cursor-pointer hover:text-blue-500 hover:bg-blue-100 p-3 rounded-lg transition duration-300">
                             <img src="https://assets.nobroker.in/nb-new/public/MaterialIcons/HomeOutlined.png" alt="Property Details" className="w-6 h-6 mr-3" />
@@ -38,24 +44,39 @@ const PropertyDetailsRent = () => {
 
                 {/* Right Content */}
                 <div className="flex-1 p-6">
-                    <h1 className="text-md font-semibold mb-6">Property Details</h1>
+                    <h1 className="text-md font-semibold mb-6 text-[#009587]">Property Details</h1>
                     <div className="border-t border-gray-300 my-4"></div>
 
                     {/* Property Details Form */}
                     <form>
                         <div className="space-y-6">
                             {/* Apartment Type */}
-                            <div className="w-1/3">
-                                <label className="block text-sm font-medium text-gray-700">Apartment Type*</label>
-                                <div className="flex items-center p-2 mt-2 border border-gray-300 rounded-lg focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200 transition duration-200">
-                                    <span className="mr-2">🏢</span>
-                                    <select className="w-full p-2">
-                                        <option>Select</option>
-                                        <option>Apartment</option>
-                                        <option>Independent House/Villa</option>
-                                        <option>Gated Community Villa</option>
-                                    </select>
+                            <div className="flex items-center space-x-8"> {/* Added flex and space-x for horizontal layout */}
+                                <div className="w-[40%]">
+                                    <label className="block text-sm font-medium text-gray-700">Apartment Type*</label>
+                                    <div className="flex items-center p-2 mt-2 border border-gray-300 rounded-lg focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200 transition duration-200">
+                                        <span>🏢</span>
+                                        <select className="w-full p-2" value={apartmentType} onChange={handleApartmentTypeChange}>
+                                            <option>Select</option>
+                                            <option>Apartment</option>
+                                            <option>Independent House/Villa</option>
+                                            <option>Gated Community Villa</option>
+                                        </select>
+                                    </div>
                                 </div>
+                                {/* Conditionally Render New Input for Apartment/Villa Name */}
+                                {(apartmentType === 'Apartment' || apartmentType === 'Gated Community Villa') && (
+                                    <div className="w-[40]"> {/* Set the input box width */}
+                                        <label className="block text-xs font-medium text-gray-700">
+                                            Apartment Name <span className="text-red-500">(Please select from dropdown)</span>*
+                                        </label>
+                                        <input
+                                            type="text"
+                                            className="p-2 mt-2 border border-gray-300 rounded-lg focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200 transition duration-200"
+                                            placeholder="e.g.Ajmera Enclave"
+                                        />
+                                    </div>
+                                )}
                             </div>
 
 
@@ -156,7 +177,7 @@ const PropertyDetailsRent = () => {
                 </div>
 
                 {/* Right Side Details */}
-                <div className="w-1/4 -mt-3 p-6 bg-white shadow-md">
+                <div className="w-1/5 -mt-3 p-6 bg-white shadow-md">
                     {/* Rental Agreement and No Need to Visit Government Office */}
                     <div className="flex flex-col items-center p-4 border border-gray-200">
                         <div className="flex flex-col items-center hover:shadow-sm transition-shadow duration-200 w-full">
@@ -171,11 +192,10 @@ const PropertyDetailsRent = () => {
                         <div className="flex flex-col items-center  w-full">
                             <div className="text-center">
                                 <span className="text-xs text-gray-600">No need to visit Government office</span>
-                                <span className="block text-md font-semibold mt-1 bg-green-600 px-2 py-2 text-gray-800">Get it now</span>
+                                <span className="block text-md font-semibold mt-1 bg-[#009587] px-2 py-2 text-gray-800">Get it now</span>
                             </div>
                         </div>
                     </div>
-
                     {/* Get Tenants Faster and Other Features */}
                     <div className="flex flex-col space-y-4 p-6 border mt-2 border-gray-200">
                         {/* Get Tenants Faster */}
