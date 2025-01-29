@@ -32,11 +32,11 @@ const Testimonials = () => {
     ];
 
     return (
-        <div className="bg-[#334a5c] py-16">
-            <div className="max-w-screen-xl mx-auto px-4">
-                <h2 className="text-3xl font-bold text-white text-center mb-8">Our Customers Love Us</h2>
-                <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
-                    <div className="mb-8 md:mb-0 md:mr-4">
+        <div className="bg-[#334a5c] py-16 px-4">
+            <div className="max-w-screen-xl mx-auto text-center">
+                <h2 className="text-3xl font-bold text-white mb-8">Our Customers Love Us</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="flex justify-center">
                         <iframe
                             width="560"
                             height="315"
@@ -45,14 +45,14 @@ const Testimonials = () => {
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
-                            className="rounded-lg"
+                            className="rounded-lg max-w-full"
                         ></iframe>
                     </div>
-                    <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {testimonials.map((testimonial, index) => (
                             <div
                                 key={index}
-                                className="bg-white p-6 rounded-lg shadow-md flex flex-col items-start max-w-xs"
+                                className="bg-white p-6 rounded-lg shadow-md flex flex-col items-start"
                             >
                                 <div className="flex items-center mb-4">
                                     <img

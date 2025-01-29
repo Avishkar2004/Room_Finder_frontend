@@ -83,7 +83,6 @@ const SellorRentProperty = () => {
 
       {/* Main Content Section */}
       <div className="flex flex-col lg:flex-row max-w-6xl w-full mt-6 px-8 py-4 border lg:space-x-8">
-        {/* Why Post Through Us Section (Left Side) */}
         <div className="flex-1 lg:flex-[0.4] bg-gray-100 px-7 py-4">
           <h3 className="text-lg font-bold text-gray-800 mb-4">
             Why Post through us?
@@ -387,12 +386,12 @@ const SellorRentProperty = () => {
               </div>
             )}
           </div>
-          <button
+          <Link to="/property/manage/rent"
             type="submit"
             className="w-full mt-4 bg-[#fd3752] text-white py-2 px-4 rounded-md hover:bg-[#e3324a] transition duration-300"
           >
             Start Posting Your Ad for Free
-          </button>
+          </Link>
         </div>
       </div>
     </div>

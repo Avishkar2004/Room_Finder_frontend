@@ -22,7 +22,7 @@ const Header = () => {
             {/* Logo on the left */}
             <div className="flex items-center gap-2">
                 <Link to="/">
-                <img src="https://assets.nobroker.in/static/img/logos/nb_logo_new_trans.svg" alt="No Broker" className="w-44 h-11" />
+                    <img src="https://assets.nobroker.in/static/img/logos/nb_logo_new_trans.svg" alt="No Broker" className="w-44 h-11" />
                 </Link>
             </div>
 

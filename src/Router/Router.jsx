@@ -12,12 +12,13 @@ import WhyUse from '../Components/Pages/WhyUse';
 import Business from '../Components/Pages/Business ';
 import Testimonials from '../Components/Pages/Testimonials';
 import FindANewHome from '../Components/Pages/FindANewHome';
-import Available from '../Components/Pages/Available';
+// import Available from '../Components/Pages/Available';
 import Services from '../Components/Pages/Services';
 import Footer from '../Components/Pages/Footer';
 import ForgotPassword from '../Components/Pages/ForgotPassword';
 import GoogleCallback from '../Components/GoogleCallback';
 import SellorRentProperty from '../Components/Pages/SellorRentProperty';
+import PropertyDetailsRent from '../Components/Pages/PropertyDetailsRent';
 
 const AppRouter = () => {
     return (
@@ -30,6 +31,7 @@ const AppRouter = () => {
                 <Route path='/forgot-password' element={<ForgotPassword />} />
                 <Route path="/postaboutroom" element={<PostFlat />} />
                 <Route path="/list-your-property-for-rent-sale" element={<SellorRentProperty />} />
+                <Route path='/property/manage/rent' element={<PropertyDetailsRent />} />
             </Routes>
             <ConditionalCarousel />
         </Router>
@@ -49,7 +51,7 @@ const ConditionalCarousel = () => {
                 <Business />
                 <Testimonials />
                 <FindANewHome />
-                <Available />
+                {/* <Available /> */}
                 <Services />
                 <Footer />
                 {/* <LookingFor /> */}
