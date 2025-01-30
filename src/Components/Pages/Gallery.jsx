@@ -4,7 +4,7 @@ const Gallery = () => {
   return (
     <div className="flex justify-center items-center w-full">
       <div className="w-full">
-        <h1 className="text-md font-semibold text-[#009587]">
+        <h1 className="text-sm font-semibold  text-[#009587]">
           Upload photos & videos
         </h1>
         <div className="border-t border-gray-300 my-4"></div>
