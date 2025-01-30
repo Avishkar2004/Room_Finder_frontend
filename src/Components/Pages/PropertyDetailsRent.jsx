@@ -31,9 +31,9 @@ const PropertyDetailsRent = () => {
 
     return (
         <div className="flex justify-center items-center bg-gray-100">
-            <div className="flex mt-4 bg-white p-6 rounded-lg shadow-lg w-3/4">
+            <div className="flex mt-4 bg-white p-5 rounded-lg shadow-lg w-[80%]">
                 {/* Left Sidebar */}
-                <div className="w-1/4 p-6 rounded-l-lg shadow-lg text-gray-600">
+                <div className="w-[20%] p-4 rounded-l-lg shadow-lg text-gray-600">
                     <ul className="space-y-6">
                         {[
                             { name: "Property Details", key: "PropertyDetails", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/HomeOutlined.png" },
@@ -60,7 +60,7 @@ const PropertyDetailsRent = () => {
 
 
                 {/* Right Side Details */}
-                <div className="w-1/5 -mt-3 p-6 bg-white shadow-md">
+                <div className="w-1/6 -mt-3 p-6 bg-white shadow-md">
                     {/* Rental Agreement and No Need to Visit Government Office */}
                     <div className="flex flex-col items-center p-4 border border-gray-200">
                         <div className="flex flex-col items-center hover:shadow-sm transition-shadow duration-200 w-full">
@@ -79,7 +79,7 @@ const PropertyDetailsRent = () => {
                         </div>
                     </div>
                     {/* Get Tenants Faster and Other Features */}
-                    <div className="flex flex-col space-y-4 p-6 border mt-2 border-gray-200">
+                    <div className="flex flex-col space-y-4 p-4 border mt-2 border-gray-200">
                         {/* Get Tenants Faster */}
                         <div className="text-center">
                             <span className="text-sm text-gray-600">Get Tenants Faster</span>
