@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ProgressBar from "./ProgressBar";
+import ProgressBar from "./ProgressBar"; // Assuming ProgressBar is a separate component
 import LocalityDetails from "./LocalityDetails";
 import RentalDetails from "./RentalDetails";
 import Amenities from "./Amenities";
@@ -8,26 +8,38 @@ import Schedule from "./Schedule";
 import PropertyDetails from "./PropertyDetails";
 
 const PropertyDetailsRent = () => {
-    const [selectedTab, setSelectedTab] = useState("PropertyDetails")
+    const [selectedTab, setSelectedTab] = useState("PropertyDetails");
 
     const renderComponent = () => {
         switch (selectedTab) {
             case "PropertyDetails":
                 return <PropertyDetails />;
             case "LocalityDetails":
-                return <LocalityDetails />
+                return <LocalityDetails />;
             case "RentalDetails":
-                return <RentalDetails />
+                return <RentalDetails />;
             case "Amenities":
-                return <Amenities />
+                return <Amenities />;
             case "Gallery":
-                return <Gallery />
+                return <Gallery />;
             case "Schedule":
-                return <Schedule />
+                return <Schedule />;
             default:
                 return <PropertyDetails />;
         }
-    }
+    };
+
+    // Define the steps for progress
+    const steps = [
+        "PropertyDetails",
+        "LocalityDetails",
+        "RentalDetails",
+        "Amenities",
+        "Gallery",
+        "Schedule",
+    ];
+
+    const currentStepIndex = steps.indexOf(selectedTab);
 
     return (
         <div className="flex justify-center items-center bg-gray-100">
@@ -45,7 +57,9 @@ const PropertyDetailsRent = () => {
                         ].map((item) => (
                             <li
                                 key={item.key}
-                                className={`flex items-center cursor-pointer p-3 rounded-lg transition duration-300 ${selectedTab === item.key ? "bg-blue-100 text-blue-500 font-semibold" : "hover:text-blue-500 hover:bg-blue-100"
+                                className={`flex items-center cursor-pointer p-3 rounded-lg transition duration-300 ${selectedTab === item.key
+                                        ? "bg-blue-100 text-blue-500 font-semibold"
+                                        : "hover:text-blue-500 hover:bg-blue-100"
                                     }`}
                                 onClick={() => setSelectedTab(item.key)}
                             >
@@ -56,10 +70,16 @@ const PropertyDetailsRent = () => {
                     </ul>
                 </div>
 
-                <div className="flex-1 p-6">{renderComponent()}</div>
-
-
                 {/* Right Side Details */}
+                <div className="flex-1 p-6">
+                    {/* Progress Bar */}
+                    <div className="mb-4">
+                        <ProgressBar progress={(currentStepIndex / (steps.length - 1)) * 100} />
+                    </div>
+                    {renderComponent()}
+                </div>
+
+                {/* Right Sidebar */}
                 <div className="w-1/6 -mt-3 p-6 bg-white shadow-md">
                     {/* Rental Agreement and No Need to Visit Government Office */}
                     <div className="flex flex-col items-center p-4 border border-gray-200">
@@ -113,7 +133,6 @@ const PropertyDetailsRent = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     );
