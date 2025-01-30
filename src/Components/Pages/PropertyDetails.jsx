@@ -6,7 +6,7 @@ const PropertyDetails = () => {
         setApartmentType(e.target.value);
     };
     return (
-        <div className="flex-1 p-6">
+        <div className="flex-1 p-4 shadow-lg rounded-lg">
             <h1 className="text-sm font-semibold  text-[#009587]">Property Details</h1>
             <div className="border-t border-gray-300 my-4"></div>
             <form>
@@ -42,7 +42,7 @@ const PropertyDetails = () => {
 
 
                     {/* Type, Floor, and Total Floors in a row */}
-                    <div className="grid grid-cols-3 gap-8">
+                    <div className="grid grid-cols-3 gap-5">
                         <div>
                             <label className="block text-sm font-medium text-gray-700">BHK Type*</label>
                             <select className="w-full p-2 mt-2 border border-gray-300 rounded-lg focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200 transition duration-200">
@@ -119,7 +119,7 @@ const PropertyDetails = () => {
                             </div>
                         </div>
                         {/* Built Up Area */}
-                        <div className="w-1/3">
+                        <div className="w-1/2">
                             <label className="block text-sm font-medium text-gray-700">Built Up Area*</label>
                             <div className="flex items-center">
                                 <input

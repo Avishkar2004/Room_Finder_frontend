@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ProgressBar from "./ProgressBar";
 import LocalityDetails from "./LocalityDetails";
 import RentalDetails from "./RentalDetails";
