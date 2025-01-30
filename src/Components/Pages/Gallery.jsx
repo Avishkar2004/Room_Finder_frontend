@@ -8,7 +8,6 @@ const Gallery = () => {
           Upload photos & videos
         </h1>
         <div className="border-t border-gray-300 my-4"></div>
-
         <div className="bg-gray-100 border p-10 flex flex-col items-center text-center rounded-lg">
           <img
             src="https://assets.nobroker.in/nb-new/public/MaterialIcons/CameraAlt.png"
@@ -21,20 +20,16 @@ const Gallery = () => {
           <p className="text-gray-700 text-sm mb-4">
             90% tenants contact on properties with photos.
           </p>
-
           <button className="px-4 py-2 bg-[#009587] text-white font-semibold rounded-md">
             Add Photos
           </button>
         </div>
-
         {/* OR Section with Borders */}
         <div className="flex items-center my-4">
           <div className="flex-1 border-t border-gray-300"></div>
           <span className="mx-2 text-gray-500 text-sm bg-gray-400 rounded-full">OR</span>
           <div className="flex-1 border-t border-gray-300"></div>
         </div>
-
-
         <div className="flex flex-col items-center justify-center space-y-4">
           <span className="text-gray-700 text-sm font-bold">
             We can upload photos on your behalf
@@ -56,8 +51,6 @@ const Gallery = () => {
           </div>
 
         </div>
-
-
         <div className="bg-gray-100 border mt-10 p-10 flex flex-col items-center text-center rounded-lg">
           <img
             src="https://assets.nobroker.in/nb-new/public/MaterialIcons/Videocam.png"
