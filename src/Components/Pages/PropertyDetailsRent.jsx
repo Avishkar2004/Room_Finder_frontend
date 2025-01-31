@@ -29,21 +29,20 @@ const PropertyDetailsRent = () => {
         }
     };
 
-    // Define the steps for progress
-    const steps = [
-        "PropertyDetails",
-        "LocalityDetails",
-        "RentalDetails",
-        "Amenities",
-        "Gallery",
-        "Schedule",
-    ];
-
-    const currentStepIndex = steps.indexOf(selectedTab);
-
+    const tabProgress = {
+        PropertyDetails: 16.66,
+        LocalityDetails: 33.33,
+        RentalDetails: 50,
+        Amenities: 66.66,
+        Gallery: 83.33,
+        Schedule: 100
+    }
     return (
-        <div className="flex justify-center items-center bg-gray-100">
-            <div className="flex mt-4 bg-white p-5 rounded-lg shadow-lg w-[80%]">
+        <div className="flex flex-col justify-center items-center bg-gray-100">
+            <div className="w-full  mt-[2px]">
+                <ProgressBar progress={tabProgress[selectedTab]} />
+            </div>
+            <div className="flex mt-4 bg-white p-2 rounded-lg shadow-lg w-[80%]">
                 {/* Left Sidebar */}
                 <div className="w-[20%] p-4 rounded-l-lg shadow-lg text-gray-600">
                     <ul className="space-y-6">
@@ -58,8 +57,8 @@ const PropertyDetailsRent = () => {
                             <li
                                 key={item.key}
                                 className={`flex items-center cursor-pointer p-3 rounded-lg transition duration-300 ${selectedTab === item.key
-                                        ? "bg-blue-100 text-blue-500 font-semibold"
-                                        : "hover:text-blue-500 hover:bg-blue-100"
+                                    ? "bg-blue-100 text-blue-500 font-semibold"
+                                    : "hover:text-blue-500 hover:bg-blue-100"
                                     }`}
                                 onClick={() => setSelectedTab(item.key)}
                             >
@@ -70,12 +69,9 @@ const PropertyDetailsRent = () => {
                     </ul>
                 </div>
 
+
                 {/* Right Side Details */}
-                <div className="flex-1 p-6">
-                    {/* Progress Bar */}
-                    <div className="mb-4">
-                        <ProgressBar progress={(currentStepIndex / (steps.length - 1)) * 100} />
-                    </div>
+                <div className="flex-1 p-4">
                     {renderComponent()}
                 </div>
 
