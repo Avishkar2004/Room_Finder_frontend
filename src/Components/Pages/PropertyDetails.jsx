@@ -28,7 +28,6 @@ const PropertyDetails = () => {
 
     // Define validateForm function
     const validateForm = () => {
-        console.log("validateForm called");
         const newErrors = {};
         const { propertyName, price, bhkType, floor, totalFloors, propertyAge, facing, builtUpArea } = formData;
 
