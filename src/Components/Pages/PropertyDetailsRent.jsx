@@ -10,24 +10,8 @@ import PropertyDetails from "./PropertyDetails";
 const PropertyDetailsRent = () => {
     const [selectedTab, setSelectedTab] = useState("PropertyDetails");
 
-    const renderComponent = () => {
-        switch (selectedTab) {
-            case "PropertyDetails":
-                return <PropertyDetails />;
-            case "LocalityDetails":
-                return <LocalityDetails />;
-            case "RentalDetails":
-                return <RentalDetails />;
-            case "Amenities":
-                return <Amenities />;
-            case "Gallery":
-                return <Gallery />;
-            case "Schedule":
-                return <Schedule />;
-            default:
-                return <PropertyDetails />;
-        }
-    };
+    const [formValid, setFormValid] = useState(false);
+    const [error, setError] = useState("");
 
     const tabProgress = {
         PropertyDetails: 16.66,
@@ -37,6 +21,46 @@ const PropertyDetailsRent = () => {
         Gallery: 83.33,
         Schedule: 100
     }
+
+    // Function to validate each tab's fields
+    const validateCurrentTab = () => {
+        switch (selectedTab) {
+            case "PropertyDetails":
+                return PropertyDetails.validateForm();
+            case "LocalityDetails":
+                return LocalityDetails.validateForm();
+            case "RentalDetails":
+                return RentalDetails.validateForm();
+            case "Amenities":
+                return Amenities.validateForm();
+            case "Gallery":
+                return Gallery.validateForm()
+            case "Schedule":
+                return Schedule.validateForm()
+            default:
+                return false
+        }
+    }
+
+    const handleNext = () => {
+        if (validateCurrentTab()) {
+            setError(""); // Clear any previous error messages
+            setFormValid(true);
+
+            // Move to next tab
+            const tabKeys = Object.keys(tabProgress);
+            const currIndex = tabKeys.indexOf(selectedTab);
+            if (currIndex < tabKeys.length - 1) {
+                setSelectedTab(tabKeys[currIndex + 1]);
+            }
+        } else {
+            // Show specific error messages for the current tab
+            setError(`Please fill all required fields in the ${selectedTab} section before continuing.`);
+            setFormValid(false);
+        }
+    };
+
+
     return (
         <div className="flex flex-col justify-center items-center bg-gray-100">
             <div className="w-full  mt-[2px]">
@@ -71,12 +95,25 @@ const PropertyDetailsRent = () => {
 
 
                 {/* Right Side Details */}
-                <div className="flex-1 p-4">
-                    {renderComponent()}
+                <div className="flex-1 p-4 flex-col">
+                    {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
+                    {selectedTab === "PropertyDetails" && <PropertyDetails />}
+                    {selectedTab === "LocalityDetails" && <LocalityDetails />}
+                    {selectedTab === "RentalDetails" && <RentalDetails />}
+                    {selectedTab === "Amenities" && <Amenities />}
+                    {selectedTab === "Gallery" && <Gallery />}
+                    {selectedTab === "Schedule" && <Schedule />}
+
+                    <div className="mt-auto">
+
+                        <button className="w-full mt-4 px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+                            onClick={handleNext}
+                        >Save and Continue</button>
+                    </div>
                 </div>
 
                 {/* Right Sidebar */}
-                <div className="w-1/6 -mt-3 p-6 bg-white shadow-md">
+                <div className="w-1/6 p-6 bg-white shadow-md">
                     {/* Rental Agreement and No Need to Visit Government Office */}
                     <div className="flex flex-col items-center p-4 border border-gray-200">
                         <div className="flex flex-col items-center hover:shadow-sm transition-shadow duration-200 w-full">
