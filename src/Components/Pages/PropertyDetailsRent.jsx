@@ -28,9 +28,9 @@ const PropertyDetailsRent = () => {
             case "PropertyDetails":
                 return PropertyDetails.validateForm ? PropertyDetails.validateForm() : false;
             case "LocalityDetails":
-                return LocalityDetails.validateForm(); // Similarly for other components
+                return LocalityDetails.validateForm ? LocalityDetails.validateForm() : false // Similarly for other components
             case "RentalDetails":
-                return RentalDetails.validateForm();
+                return RentalDetails.validateForm ? RentalDetails.validateForm() : false;
             case "Amenities":
                 return Amenities.validateForm();
             case "Gallery":
