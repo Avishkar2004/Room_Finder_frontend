@@ -26,7 +26,9 @@ const PropertyDetails = () => {
         }));
     };
 
+    // Define validateForm function
     const validateForm = () => {
+        console.log("validateForm called");
         const newErrors = {};
         const { propertyName, price, bhkType, floor, totalFloors, propertyAge, facing, builtUpArea } = formData;
 
@@ -43,6 +45,10 @@ const PropertyDetails = () => {
         return Object.keys(newErrors).length === 0;
     };
 
+
+    // After defining validateForm, ensure you export it
+    PropertyDetails.validateForm = validateForm;
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validateForm()) {
@@ -50,10 +56,6 @@ const PropertyDetails = () => {
             console.log("Form data submitted", formData);
         }
     };
-
-
-    // Add this export
-    PropertyDetails.validateForm = validateForm;
 
     return (
         <div className="flex-1 p-4 shadow-lg rounded-lg">
@@ -215,5 +217,6 @@ const PropertyDetails = () => {
         </div>
     );
 };
+
 
 export default PropertyDetails;

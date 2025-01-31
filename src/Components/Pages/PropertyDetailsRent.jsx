@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import ProgressBar from "./ProgressBar"; // Assuming ProgressBar is a separate component
-import LocalityDetails from "./LocalityDetails";
-import RentalDetails from "./RentalDetails";
 import Amenities from "./Amenities";
 import Gallery from "./Gallery";
-import Schedule from "./Schedule";
+import LocalityDetails from "./LocalityDetails";
+import ProgressBar from "./ProgressBar"; // Assuming ProgressBar is a separate component
 import PropertyDetails from "./PropertyDetails";
+import RentalDetails from "./RentalDetails";
+import Schedule from "./Schedule";
 
 const PropertyDetailsRent = () => {
     const [selectedTab, setSelectedTab] = useState("PropertyDetails");
@@ -26,9 +26,9 @@ const PropertyDetailsRent = () => {
     const validateCurrentTab = () => {
         switch (selectedTab) {
             case "PropertyDetails":
-                return PropertyDetails.validateForm();
+                return PropertyDetails.validateForm ? PropertyDetails.validateForm() : false;
             case "LocalityDetails":
-                return LocalityDetails.validateForm();
+                return LocalityDetails.validateForm(); // Similarly for other components
             case "RentalDetails":
                 return RentalDetails.validateForm();
             case "Amenities":
