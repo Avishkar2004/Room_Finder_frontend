@@ -36,7 +36,7 @@ const PropertyDetailsRent = () => {
             case "Gallery":
                 return Gallery.validateForm()
             case "Schedule":
-                return Schedule.validateForm()
+                return Schedule.validateForm ? Schedule.validateForm() : false;
             default:
                 return false
         }

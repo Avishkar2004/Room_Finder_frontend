@@ -1,17 +1,38 @@
 import React, { useState } from 'react';
 
 const Schedule = () => {
-  const [selected, setSelected] = useState([])
-
   const options = [
     { label: "Everyday", sub: "Mon-Sun" },
     { label: "Weekday", sub: "Mon-Fri" },
     { label: "Weekend", sub: "Sat,Sun" }
   ]
+  const [selected, setSelected] = useState([options[2].label]); // Select 3rd option by default
+  const [startTime, setStartTime] = useState("")
+  const [endTime, setEndTime] = useState("")
+  const [errors, setErroor] = useState({})
 
   const toggleSelection = (label) => {
-    setSelected((prev) => prev.includes(label) ? prev.filter((item) => item !== label) // Remove if already selected
-      : [...prev, label]) // Add if not selected
+    setSelected((prev) => prev.includes(label) ? prev.filter((item) => item !== label) : [label]);
+  };
+
+  const validateForm = () => {
+    let newErrors = {}
+
+    if (!startTime) newErrors.startTime = "Start time is required."
+    if (!endTime) newErrors.endTime = "End time is required."
+    if (startTime && endTime && startTime >= endTime) {
+      newErrors.timeOrder = "Start time must be before end time"
+    }
+    setErroor(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  Schedule.validateForm = validateForm
+
+  const handleSubmit = () => {
+    if (validateForm()) {
+      console.log("Form submitted successfully")
+    }
   }
 
   return (
@@ -129,20 +150,25 @@ const Schedule = () => {
           </label>
 
           {/* Start time and end time */}
-          <div className='flex gap-6'>
-            <div className='flex-1'>
-              <label className='block text-gray-600 text-xs mb-1'>Start Time</label>
-              <input type="time" className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-lg"
-              />
-            </div>
+          <form onClick={handleSubmit}>
+            <div className='flex gap-6'>
+              <div className='flex-1'>
+                <label className='block text-gray-600 text-xs mb-1'>Start Time</label>
+                <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-lg"
+                />
+                {errors.startTime && <p className='text-red-500 text-xs'>{errors.startTime}</p>}
+              </div>
 
-            <div className='flex-1'>
-              <label className="block text-gray-600 text-xs mb-1">End Time</label>
-              <input type="time" className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-lg"
-              />
+              <div className='flex-1'>
+                <label className="block text-gray-600 text-xs mb-1">End Time</label>
+                <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-lg"
+                />
+                {errors.endTime && <p className='text-red-500 text-xs'>{errors.endTime}</p>}
+                {errors.timeOrder && <p className='text-red-500 text-xs'>{errors.timeOrder}</p>}
+              </div>
             </div>
+          </form>
 
-          </div>
 
           <div className='mt-5 flex items-center'>
             <input

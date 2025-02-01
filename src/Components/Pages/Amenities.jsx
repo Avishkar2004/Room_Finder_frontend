@@ -346,9 +346,6 @@ const Amenities = () => {
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     );
 };
