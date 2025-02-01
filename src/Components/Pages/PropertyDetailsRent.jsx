@@ -6,8 +6,11 @@ import ProgressBar from "./ProgressBar"; // Assuming ProgressBar is a separate c
 import PropertyDetails from "./PropertyDetails";
 import RentalDetails from "./RentalDetails";
 import Schedule from "./Schedule";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const PropertyDetailsRent = () => {
+    const navigate = useNavigate(); // Initialize useNavigate
+
     const [selectedTab, setSelectedTab] = useState("PropertyDetails");
 
     const [formValid, setFormValid] = useState(false);
@@ -47,14 +50,18 @@ const PropertyDetailsRent = () => {
             setError(""); // Clear any previous error messages
             setFormValid(true);
 
-            // Move to next tab
-            const tabKeys = Object.keys(tabProgress);
-            const currIndex = tabKeys.indexOf(selectedTab);
-            if (currIndex < tabKeys.length - 1) {
-                setSelectedTab(tabKeys[currIndex + 1]);
+            if (selectedTab === "Schedule") {
+                // If last tab, navigate to ConfirmationRent
+                navigate("/confirmation-rent");
+            } else {
+                // Move to next tab
+                const tabKeys = Object.keys(tabProgress);
+                const currIndex = tabKeys.indexOf(selectedTab);
+                if (currIndex < tabKeys.length - 1) {
+                    setSelectedTab(tabKeys[currIndex + 1]);
+                }
             }
         } else {
-            // Show specific error messages for the current tab
             setError(`Please fill all required fields in the ${selectedTab} section before continuing.`);
             setFormValid(false);
         }
@@ -108,7 +115,9 @@ const PropertyDetailsRent = () => {
 
                         <button className="w-full mt-4 px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
                             onClick={handleNext}
-                        >Save and Continue</button>
+                        >
+                            {selectedTab === "Schedule" ? "Confirm & Proceed" : "Save and Continue"}
+                        </button>
                     </div>
                 </div>
 

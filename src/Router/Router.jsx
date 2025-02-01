@@ -19,6 +19,7 @@ import ForgotPassword from '../Components/Pages/ForgotPassword';
 import GoogleCallback from '../Components/GoogleCallback';
 import SellorRentProperty from '../Components/Pages/SellorRentProperty';
 import PropertyDetailsRent from '../Components/Pages/PropertyDetailsRent';
+import ConfirmationRent from '../Components/Pages/confirmationRent';
 
 const AppRouter = () => {
     return (
@@ -32,6 +33,7 @@ const AppRouter = () => {
                 <Route path="/postaboutroom" element={<PostFlat />} />
                 <Route path="/list-your-property-for-rent-sale" element={<SellorRentProperty />} />
                 <Route path='/property/manage/rent' element={<PropertyDetailsRent />} />
+                <Route path="/confirmation-rent" element={ConfirmationRent} />
             </Routes>
             <ConditionalCarousel />
         </Router>
