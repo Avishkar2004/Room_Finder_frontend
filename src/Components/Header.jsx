@@ -90,17 +90,18 @@ const Header = () => {
                     <div className="space-x-4">
                         <Link
                             to="/signup"
-                            className="text-white bg-blue-600 hover:bg-blue-500 py-2 px-4 rounded-md hover:text-gray-900 font-medium transition duration-200"
+                            className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-2 px-6 rounded-full font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
                         >
                             Sign Up
                         </Link>
                         <Link
                             to="/login"
-                            className="text-white bg-gray-800 hover:bg-gray-700 py-2 px-4 rounded-md hover:text-gray-200 font-medium transition duration-200"
+                            className="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-2 px-6 rounded-full font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
                         >
                             Log In
                         </Link>
                     </div>
+
                 )}
 
                 {/* Notification Icon */}
