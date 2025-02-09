@@ -127,7 +127,7 @@ const SellorRentProperty = () => {
         </div>
 
         {/* Get Started Section (Right Side) */}
-        <div className="flex-1 bg-white p-6 rounded-lg shadow-md">
+        <div className="flex-1 bg-white p-6 rounded-lg shadow-md ">
           {user ? (
             <div className="flex flex-col items-center space-y-4">
               <span className="font-semibold text-center">
@@ -386,12 +386,15 @@ const SellorRentProperty = () => {
               </div>
             )}
           </div>
-          <Link to="/property/manage/rent"
-            type="submit"
-            className="w-full mt-4 bg-[#fd3752] text-white py-2 px-4 rounded-md hover:bg-[#e3324a] transition duration-300"
-          >
-            Start Posting Your Ad for Free
-          </Link>
+          <div className="flex justify-center w-full mt-4">
+
+            <Link to="/property/manage/rent"
+              type="submit"
+              className="mt-4 bg-[#fd3752] text-white py-2 px-4 rounded-md hover:bg-[#e3324a] transition duration-300"
+            >
+              Start Posting Your Ad for Free
+            </Link>
+          </div>
         </div>
       </div>
     </div>

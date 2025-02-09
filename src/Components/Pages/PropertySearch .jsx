@@ -241,7 +241,7 @@ const PropertySearch = () => {
           )}
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center space-y-4">
+      <div className="flex flex-col items-center justify-center space-y-4 py-7">
         {/* Text with lines */}
         <div className="flex items-center gap-4">
           <div className="border-t border-gray-300 w-12"></div>

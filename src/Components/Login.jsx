@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/authContext'; // Import AuthContext
 import { Visibility, VisibilityOff } from '@mui/icons-material'; // Import the icons from Material UI
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/ReactToastify.css"
 
 const Login = () => {
   const navigate = useNavigate();
@@ -23,7 +25,7 @@ const Login = () => {
   };
 
   const handlePasswordToggle = () => {
-    setShowPassword(!showPassword); // Toggle password visibility
+    setShowPassword(!showPassword);
   };
 
   const handleSubmit = async (e) => {
@@ -32,8 +34,11 @@ const Login = () => {
     setError('');
     try {
       await login(formData);
-      // alert('Login successful!');
-      window.location.reload(navigate('/')) // This might not work as expected
+      toast.success("🎉 Successful login!", { position: "top-center", autoClose: 2000 })
+      setTimeout(() => {
+        navigate("/")
+        window.location.reload()
+      }, 2500); // Redirect after toast is shown
     } catch (err) {
       console.error(err);
       if (err.response && err.response.data) {
@@ -55,6 +60,7 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <ToastContainer />
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Log In</h2>
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}

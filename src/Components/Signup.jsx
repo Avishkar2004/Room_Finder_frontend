@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import debounce from "lodash.debounce";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/ReactToastify.css"
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -66,11 +68,16 @@ const Signup = () => {
 
         try {
             const res = await axios.post("http://localhost:5000/api/auth/signup", formData);
-            alert(res.data.message);
             Cookies.set("authToken", res.data.token);
-            setLoading(false);
-            navigate("/");
-            window.location.reload();
+
+            toast.success("🎉 Signup successful! Redirecting...", {
+                position: "top-center",
+                autoClose: 2000,
+            })
+            setTimeout(() => {
+                navigate("/");
+                window.location.reload();
+            }, 2000);
         } catch (err) {
             alert(err.response?.data?.message || "An error occurred during signup.");
             setLoading(false);
@@ -79,6 +86,7 @@ const Signup = () => {
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-cover bg-center">
+            <ToastContainer />
             <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-md">
                 <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Create an Account</h2>
                 <form onSubmit={handleSubmit}>
