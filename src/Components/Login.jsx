@@ -34,11 +34,11 @@ const Login = () => {
     setError('');
     try {
       await login(formData);
-      toast.success("🎉 Successful login!", { position: "top-center", autoClose: 2000 })
+      toast.success("🎉 Successful login!", { position: "top-center", autoClose: 1000 })
       setTimeout(() => {
         navigate("/")
         window.location.reload()
-      }, 2500); // Redirect after toast is shown
+      }, 1300); // Redirect after toast is shown
     } catch (err) {
       console.error(err);
       if (err.response && err.response.data) {

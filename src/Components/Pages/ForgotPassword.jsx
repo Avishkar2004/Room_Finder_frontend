@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom"
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/ReactToastify.css"
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState('');
@@ -23,6 +25,7 @@ const ForgotPassword = () => {
             // Send request to backend to generate and send OTP
             const response = await axios.post('http://localhost:5000/api/auth/forgot-password', { email });
             setMessage(response.data.message);
+            toast.success("🎉 Otp Send Succesfully", { position: "top-center", autoClose: 2000 })
             setStep(2); // Proceed to next step where user enters OTP and new password
         } catch (err) {
             setError(err.response?.data?.message || 'Failed to send OTP. Please try again.');
@@ -47,7 +50,10 @@ const ForgotPassword = () => {
                     newPassword
                 });
                 setMessage(response.data.message);
-                navigate("/login")
+                toast.success("🎉 Password reset successfully redirecting to Login Page", { position: "top-center", autoClose: 2000 })
+                setTimeout(() => {
+                    navigate("/login")
+                }, 2300);
 
             } catch (err) {
                 setError(err.response?.data?.message || 'Failed to reset password. Please try again.');
@@ -59,6 +65,7 @@ const ForgotPassword = () => {
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
+            <ToastContainer />
             <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
                 <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
                     {step === 1 ? 'Forgot Password' : 'Reset Password'}
