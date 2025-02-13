@@ -152,7 +152,6 @@ const SellorRentProperty = () => {
                 </select>
               </div>
             </div>
-
           ) : (
             <form className="space-y-3" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -236,19 +235,19 @@ const SellorRentProperty = () => {
 
           {/* Property Type Selection */}
           <div className="flex items-center justify-center">
-            <div>
+            <div className="w-full sm:w-auto">
               <label
                 htmlFor="propertyType"
-                className="block text-xs font-semibold text-gray-700 text-center mb-4 mt-6"
+                className="block text-xs font-semibold text-gray-700 text-center mb-2 sm:mb-4 mt-6"
               >
                 Property Type
               </label>
-              <div className="flex border">
+              <div className="flex flex-wrap justify-center border">
                 <button
                   type="button"
                   onClick={() => setSelectedPropertyType("Resident")}
-                  className={`px-8 py-2 font-semibold transition-all duration-200 ${selectedPropertyType === "Resident"
-                    ? "b#ffffffffffff] text-gray-700 shadow-md border-b-4 border-[#009587]"
+                  className={`px-4 sm:px-8 py-2 font-semibold transition-all duration-200 ${selectedPropertyType === "Resident"
+                    ? "bg-[#ffffff] text-gray-700 shadow-md border-b-4 border-[#009587]"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-300"
                     }`}
                 >
@@ -257,7 +256,7 @@ const SellorRentProperty = () => {
                 <button
                   type="button"
                   onClick={() => setSelectedPropertyType("Commercial")}
-                  className={`px-8 py-2 font-semibold transition-all border-r border-l duration-200 ${selectedPropertyType === "Commercial"
+                  className={`px-4 sm:px-8 py-2 font-semibold transition-all border-r border-l duration-200 ${selectedPropertyType === "Commercial"
                     ? "bg-[#ffffff] text-gray-700 shadow-md border-b-4 border-[#009587]"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-300"
                     }`}
@@ -267,7 +266,7 @@ const SellorRentProperty = () => {
                 <button
                   type="button"
                   onClick={() => setSelectedPropertyType("LandPlot")}
-                  className={`px-8 py-2 font-semibold transition-all duration-200 ${selectedPropertyType === "LandPlot"
+                  className={`px-4 sm:px-8 py-2 font-semibold transition-all duration-200 ${selectedPropertyType === "LandPlot"
                     ? "bg-[#ffffff] text-gray-700 shadow-md border-b-4 border-[#009587]"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-300"
                     }`}
@@ -277,115 +276,79 @@ const SellorRentProperty = () => {
               </div>
             </div>
           </div>
-          <div className="border p-10">
+
+          <div className="border p-4 sm:p-10">
             {/* Ad Type Selection for Resident */}
             {selectedPropertyType === "Resident" && (
               <div className="flex flex-col items-center justify-center">
                 <label
                   htmlFor="adType"
-                  className="block text-xs font-semibold text-gray-700 text-center mb-3">
+                  className="block text-xs font-semibold text-gray-700 text-center mb-2 sm:mb-3"
+                >
                   Select Property Ad Type
                 </label>
-                <div className="flex space-x-4 mt-2">
-                  <button
-                    type="button"
-                    onClick={() => setSelectedAdType("Rent")}
-                    className={`px-8 border py-2  ${selectedAdType === "Rent"
-                      ? "bg-[#009587] text-white"
-                      : "bg-gray-100 text-gray-600"
-                      }`}>
-                    Rent
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedAdType("Resale")}
-                    className={`px-8 border py-2  ${selectedAdType === "Resale"
-                      ? "bg-[#009587] text-white"
-                      : "bg-gray-100 text-gray-600"
-                      }`}
-                  >
-                    Resale
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedAdType("PG/Hostel")}
-                    className={`px-8 border py-2  ${selectedAdType === "PG/Hostel"
-                      ? "bg-[#009587] text-white"
-                      : "bg-gray-100 text-gray-600"
-                      }`}
-                  >
-                    PG/Hostel
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedAdType("Flatmates")}
-                    className={`px-8 border py-2  ${selectedAdType === "Flatmates"
-                      ? "bg-[#009587] text-white"
-                      : "bg-gray-100 text-gray-600"
-                      }`}
-                  >
-                    Flatmates
-                  </button>
+                <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mt-2">
+                  {["Rent", "Resale", "PG/Hostel", "Flatmates"].map((type) => (
+                    <button
+                      key={type}
+                      type="button"
+                      onClick={() => setSelectedAdType(type)}
+                      className={`px-4 sm:px-8 border py-2 ${selectedAdType === type ? "bg-[#009587] text-white" : "bg-gray-100 text-gray-600"
+                        }`}
+                    >
+                      {type}
+                    </button>
+                  ))}
                 </div>
               </div>
             )}
+
             {selectedPropertyType === "Commercial" && (
               <div className="flex flex-col justify-center items-center">
                 <label
                   htmlFor="adType"
-                  className="block text-xs font-semibold text-gray-700 text-center mb-3"
+                  className="block text-xs font-semibold text-gray-700 text-center mb-2 sm:mb-3"
                 >
                   Select Property Ad Type
                 </label>
-                <div className="flex space-x-4 mt-2">
-                  <button
-                    type="button"
-                    onClick={() => setSelectedAdType("Rent")}
-                    className={`px-8 py-2 rounded-md ${selectedAdType === "Rent"
-                      ? "bg-[#009587] text-white"
-                      : "bg-gray-200 text-gray-600"
-                      }`}
-                  >
-                    Rent
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedAdType("Resale")}
-                    className={`px-8 py-2 rounded-md ${selectedAdType === "Resale"
-                      ? "bg-[#009587] text-white"
-                      : "bg-gray-200 text-gray-600"
-                      }`}
-                  >
-                    Sale
-                  </button>
-
+                <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mt-2">
+                  {["Rent", "Resale"].map((type) => (
+                    <button
+                      key={type}
+                      type="button"
+                      onClick={() => setSelectedAdType(type)}
+                      className={`px-4 sm:px-8 py-2 rounded-md ${selectedAdType === type ? "bg-[#009587] text-white" : "bg-gray-200 text-gray-600"
+                        }`}
+                    >
+                      {type}
+                    </button>
+                  ))}
                 </div>
               </div>
             )}
+
             {selectedPropertyType === "LandPlot" && (
               <div className="flex flex-col justify-center items-center">
                 <label
                   htmlFor="adType"
-                  className="block text-xs font-semibold text-gray-700 text-center mb-3"
+                  className="block text-xs font-semibold text-gray-700 text-center mb-2 sm:mb-3"
                 >
                   Select Property Ad Type
                 </label>
-                <div className="flex space-x-4 mt-2">
+                <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mt-2">
                   <button
                     type="button"
                     onClick={() => setSelectedAdType("Resale")}
-                    className={`px-4 py-2 rounded-md ${selectedAdType === "Resale"
-                      ? "bg-[#009587] text-white"
-                      : "bg-gray-200 text-gray-600"
+                    className={`px-4 sm:px-8 py-2 rounded-md ${selectedAdType === "Resale" ? "bg-[#009587] text-white" : "bg-gray-200 text-gray-600"
                       }`}
                   >
-                    ReSale
+                    Resale
                   </button>
-
                 </div>
               </div>
             )}
           </div>
+
           <div className="flex justify-center w-full mt-4">
 
             <Link to="/property/manage/rent"
