@@ -18,8 +18,9 @@ import Footer from '../Components/Pages/Footer';
 import ForgotPassword from '../Components/Pages/ForgotPassword';
 import GoogleCallback from '../Components/GoogleCallback';
 import SellorRentProperty from '../Components/Pages/SellorRentProperty';
-import PropertyDetailsRent from '../Components/Pages/PropertyDetailsRent';
 import ConfirmationRent from '../Components/Pages/confirmationRent';
+import PropertyDetailsRent from '../Components/Pages/ResidentialRent/PropertyDetailsRent';
+import PropertyDetailsResale from '../Components/Pages/ResidentialReSale/PropertyDetailsResale';
 
 const AppRouter = () => {
     return (
@@ -32,8 +33,9 @@ const AppRouter = () => {
                 <Route path='/forgot-password' element={<ForgotPassword />} />
                 <Route path="/postaboutroom" element={<PostFlat />} />
                 <Route path="/list-your-property-for-rent-sale" element={<SellorRentProperty />} />
-                <Route path='/property/manage/rent' element={<PropertyDetailsRent />} />
-                <Route path="/confirmation-rent" element={ConfirmationRent} />
+                <Route path='/property/resident/rent' element={<PropertyDetailsRent />} />
+                <Route path='/property/resident/resale' element={<PropertyDetailsResale />} />
+                <Route path="/confirmation-rent" element={<ConfirmationRent />} />
             </Routes>
             <ConditionalCarousel />
         </Router>

@@ -21,11 +21,9 @@ const LocalityDetails = () => {
   const validateForm = () => {
     const newErrors = {}
     const { city, locality, landmark } = formData
-
     if (!city) newErrors.city = "City Name is required"
     if (!locality) newErrors.locality = "Locality is required"
     if (!landmark) newErrors.landmark = "Landmark is required"
-
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   };
@@ -56,7 +54,6 @@ const LocalityDetails = () => {
         </select>
         {errors.city && <p className="text-red-500 text-xs">{errors.city}</p>}
       </div>
-
       {/* Locality */}
       <div className="mb-6">
         <label className="block text-gray-700 font-medium mb-2">Locality *</label>

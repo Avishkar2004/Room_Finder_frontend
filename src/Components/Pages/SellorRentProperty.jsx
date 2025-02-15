@@ -288,18 +288,17 @@ const SellorRentProperty = () => {
                   Select Property Ad Type
                 </label>
                 <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mt-2">
-                  {["Rent", "Resale", "PG/Hostel", "Flatmates"].map((type) => (
+                  {["Rent", "Resale", "PG&#47;Hostel", "Flatmates"].map((type) => (
                     <button
                       key={type}
                       type="button"
                       onClick={() => setSelectedAdType(type)}
-                      className={`px-4 sm:px-8 border py-2 ${selectedAdType === type ? "bg-[#009587] text-white" : "bg-gray-100 text-gray-600"
-                        }`}
-                    >
-                      {type}
-                    </button>
+                      className={`px-4 sm:px-8 border py-2 ${selectedAdType === type ? "bg-[#009587] text-white" : "bg-gray-100 text-gray-600"}`}
+                      dangerouslySetInnerHTML={{ __html: type }}
+                    />
                   ))}
                 </div>
+
               </div>
             )}
 
@@ -351,7 +350,8 @@ const SellorRentProperty = () => {
 
           <div className="flex justify-center w-full mt-4">
 
-            <Link to="/property/manage/rent"
+            <Link
+              to={`/property/${selectedPropertyType.toLocaleLowerCase()}/${selectedAdType.toLocaleLowerCase()}`}
               type="submit"
               className="mt-4 bg-[#fd3752] text-white py-2 px-4 rounded-md hover:bg-[#e3324a] transition duration-300"
             >

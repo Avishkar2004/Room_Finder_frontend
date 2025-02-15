@@ -21,7 +21,7 @@ const Header = () => {
     const toggleMenu = () => setMenuOpen(!menuOpen);
 
     return (
-        <header className="w-full flex justify-between items-center px-6 md:px-10 py-4 shadow-md bg-white">
+        <header className="w-full flex justify-between items-center px-6 md:px-10 py-2 shadow-md bg-white">
             {/* Logo */}
             <div className="flex items-center">
                 <Link to="/">
@@ -35,63 +35,152 @@ const Header = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-6">
-                <a href="/" className="flex items-center gap-2 border border-gray-300 py-2 px-4 rounded-md hover:border-gray-400 transition">
-                    <img src="https://assets.nobroker.in/nb-new/public/payrent.png" alt="Pay Rent" className="h-6 w-6" />
-                    <span className="text-sm">Pay Rent</span>
+                {/* Pay Rent */}
+                <a
+                    href="/"
+                    className="flex items-center gap-2 border border-gray-300 py-2 px-4 rounded-md hover:border-gray-400 transition"
+                >
+                    <img
+                        src="https://assets.nobroker.in/nb-new/public/payrent.png"
+                        alt="Pay Rent"
+                        className="h-5 w-5 text-xs font-normal"
+                    />
+                    <span className="text-xs font-normal">Pay Rent</span>
                 </a>
-                <Link to="/list-your-property-for-rent-sale" className="text-sm font-medium bg-[#009587] text-white py-2 px-6 rounded-md hover:bg-[#007c6f] transition">
-                    For Property Owner
+
+                {/* Property Owners */}
+                <Link
+                    to="/list-your-property-for-rent-sale"
+                    className="text-xs font-normal bg-[#009587] text-white py-2 px-6 rounded-md hover:bg-[#007c6f] transition"
+                >
+                    For Property Owners
                 </Link>
+
                 {/* User Dropdown */}
                 {user ? (
-                    <div className="relative">
-                        <div className="flex items-center gap-2 cursor-pointer" onClick={toggleUserMenu}>
-                            <AccountCircleIcon className="text-indigo-500 border rounded-full border-gray-300 p-1 transition" />
-                            <span className="text-sm font-medium text-gray-700">{user.username}</span>
-                            {userMenuOpen ? <KeyboardArrowUpIcon className="text-gray-500" /> : <KeyboardArrowDownIcon className="text-gray-500" />}
-                        </div>
-                        {userMenuOpen && (
-                            <div className="absolute top-12 right-0 bg-white shadow-lg rounded-lg border w-56 p-4 z-20">
-                                <Link to="/profile" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 rounded-md">Profile</Link>
-                                <Link to="/settings" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 rounded-md">Settings</Link>
-                                <button onClick={logout} className="block w-full text-left py-2 px-4 text-sm text-gray-700 hover:bg-red-100 rounded-md">Logout</button>
+                    <div className="relative flex items-center gap-6">
+                        {/* User Menu */}
+                        <div className="relative">
+                            <div className="flex items-center gap-2 cursor-pointer text-xs font-normal" onClick={toggleUserMenu}>
+                                <AccountCircleIcon className="text-indigo-500 border rounded-full border-gray-300 p-1 transition" />
+                                <span className="text-sm font-medium text-gray-700">{user.username}</span>
+
+                                {userMenuOpen ? (
+                                    <KeyboardArrowUpIcon className="text-gray-500" />
+                                ) : (
+                                    <KeyboardArrowDownIcon className="text-gray-500" />
+                                )}
+                                <div className="w-[1px] h-6 bg-gray-400"></div> {/* Vertical Border */}
+
+                                <NotificationsIcon className="h-6 w-6 text-gray-500 cursor-pointer" />
+                                <div className="w-[1px] h-6 bg-gray-400"></div> {/* Vertical Border */}
+
                             </div>
-                        )}
+                            {userMenuOpen && (
+                                <div className="absolute top-12 right-0 bg-white shadow-lg rounded-lg border w-56 p-4 z-20 text-xs font-normal">
+                                    <Link
+                                        to="/profile"
+                                        className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 rounded-md"
+                                    >
+                                        Profile
+                                    </Link>
+                                    <Link
+                                        to="/settings"
+                                        className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 rounded-md"
+                                    >
+                                        Settings
+                                    </Link>
+                                    <button
+                                        onClick={logout}
+                                        className="block w-full text-left py-2 px-4 text-sm text-gray-700 hover:bg-red-100 rounded-md"
+                                    >
+                                        Logout
+                                    </button>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 ) : (
-                    <div className="space-x-4">
-                        <Link to="/signup" className="bg-blue-500 text-white py-2 px-6 rounded-full shadow-lg transition hover:scale-105">
+                    <div className="flex items-center text-xs font-normal">
+                        <Link to="/signup" className="py-2 px-3 transition">
                             Sign Up
                         </Link>
-                        <Link to="/login" className="bg-gray-900 text-white py-2 px-6 rounded-full shadow-lg transition hover:scale-105">
+                        <div className="w-[1px] h-6 bg-gray-400"></div> {/* Vertical Border */}
+                        <Link to="/login" className="py-2 px-3 transition">
                             Log In
                         </Link>
+                        <div className="w-[1px] h-6 bg-gray-400"></div> {/* Vertical Border */}
+
                     </div>
                 )}
-                <NotificationsIcon className="h-6 w-6 text-gray-700 cursor-pointer" />
+
+                {/* Menu Button */}
                 <div className="flex items-center gap-1 relative">
-                    <MenuIcon
-                        className="h-6 w-6 cursor-pointer"
-                        onClick={toggleMenu}
-                    />
-                    <span className="text-lg font-medium cursor-pointer">Menu</span>
+                    <MenuIcon className="h-5 w-5 cursor-pointer" onClick={toggleMenu} />
+                    <span className="text-xs font-normal cursor-pointer">Menu</span>
 
                     {/* Dropdown Menu */}
                     {menuOpen && (
                         <div className="absolute top-10 right-0 bg-white shadow-lg rounded-md border border-gray-200 w-48 p-2 z-10">
-                            <Link to="/post-property" className="block py-2 px-4 text-sm hover:bg-gray-100 rounded-md">Post Your Property</Link>
-                            <Link to="/rental-agreement" className="block py-2 px-4 text-sm hover:bg-gray-100 rounded-md">Rental Agreement</Link>
-                            <Link to="/painting-cleaning" className="block py-2 px-4 text-sm hover:bg-gray-100 rounded-md">Painting & Cleaning</Link>
-                            <Link to="/packers-movers" className="block py-2 px-4 text-sm hover:bg-gray-100 rounded-md">Packers and Movers</Link>
-                            <Link to="/refer-earn" className="block py-2 px-4 text-sm hover:bg-gray-100 rounded-md">Refer & Earn</Link>
-                            <Link to="/rent-receipts" className="block py-2 px-4 text-sm hover:bg-gray-100 rounded-md">Rent Receipts</Link>
-                            <Link to="/tenant-plans" className="block py-2 px-4 text-sm hover:bg-gray-100 rounded-md">Tenant Plans</Link>
-                            <Link to="/owner-plans" className="block py-2 px-4 text-sm hover:bg-gray-100 rounded-md">Owner Plans</Link>
-                            <Link to="/buyer-plans" className="block py-2 px-4 text-sm hover:bg-gray-100 rounded-md">Buyer Plans</Link>
+                            <Link
+                                to="/post-property"
+                                className="block py-2 px-4 text-sm hover:bg-gray-100 rounded-md"
+                            >
+                                Post Your Property
+                            </Link>
+                            <Link
+                                to="/rental-agreement"
+                                className="block py-2 px-4 text-sm hover:bg-gray-100 rounded-md"
+                            >
+                                Rental Agreement
+                            </Link>
+                            <Link
+                                to="/painting-cleaning"
+                                className="block py-2 px-4 text-sm hover:bg-gray-100 rounded-md"
+                            >
+                                Painting & Cleaning
+                            </Link>
+                            <Link
+                                to="/packers-movers"
+                                className="block py-2 px-4 text-sm hover:bg-gray-100 rounded-md"
+                            >
+                                Packers and Movers
+                            </Link>
+                            <Link
+                                to="/refer-earn"
+                                className="block py-2 px-4 text-sm hover:bg-gray-100 rounded-md"
+                            >
+                                Refer & Earn
+                            </Link>
+                            <Link
+                                to="/rent-receipts"
+                                className="block py-2 px-4 text-sm hover:bg-gray-100 rounded-md"
+                            >
+                                Rent Receipts
+                            </Link>
+                            <Link
+                                to="/tenant-plans"
+                                className="block py-2 px-4 text-sm hover:bg-gray-100 rounded-md"
+                            >
+                                Tenant Plans
+                            </Link>
+                            <Link
+                                to="/owner-plans"
+                                className="block py-2 px-4 text-sm hover:bg-gray-100 rounded-md"
+                            >
+                                Owner Plans
+                            </Link>
+                            <Link
+                                to="/buyer-plans"
+                                className="block py-2 px-4 text-sm hover:bg-gray-100 rounded-md"
+                            >
+                                Buyer Plans
+                            </Link>
                         </div>
                     )}
                 </div>
             </div>
+
 
             {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center gap-3">
