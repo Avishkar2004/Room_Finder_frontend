@@ -80,7 +80,7 @@ const PropertyDetailsResale = () => {
                         {[
                             { name: "Property Details", key: "PropertyDetails", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/HomeOutlined.png" },
                             { name: "Locality Details", key: "LocalityDetails", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/PinDropOutlined.png" },
-                            { name: "Rental Details", key: "RentalDetails", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/Business.png" },
+                            { name: "Resale Details", key: "ResaleDetails", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/Business.png" },
                             { name: "Amenities", key: "Amenities", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/KitchenOutlined.png" },
                             { name: "Gallery", key: "Gallery", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/LinkedCameraOutlined.png" },
                             { name: "Schedule", key: "Schedule", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/DateRangeOutlined.png" },
@@ -106,7 +106,7 @@ const PropertyDetailsResale = () => {
                     {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
                     {selectedTab === "PropertyDetails" && <PropertyDetails />}
                     {selectedTab === "LocalityDetails" && <LocalityDetails />}
-                    {selectedTab === "RentalDetails" && <RentalDetails />}
+                    {selectedTab === "ResaleDetails" && <RentalDetails />}
                     {selectedTab === "Amenities" && <Amenities />}
                     {selectedTab === "Gallery" && <Gallery />}
                     {selectedTab === "Schedule" && <Schedule />}

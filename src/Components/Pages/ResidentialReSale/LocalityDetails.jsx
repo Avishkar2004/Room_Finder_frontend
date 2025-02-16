@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 const LocalityDetails = () => {
   const [formData, setFormData] = useState({
@@ -35,7 +36,7 @@ const LocalityDetails = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-8 bg-white shadow-lg rounded-lg">
+    <div className="max-w-3xl mx-auto p-4 bg-white shadow-lg rounded-lg">
       <h1 className="text-sm font-semibold text-[#009587]">Provide Location Details</h1>
       <div className="border-t border-gray-300 my-4"></div>
 
@@ -67,7 +68,7 @@ const LocalityDetails = () => {
             className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
           />
           {errors.locality && <p className="text-red-500 text-xs">{errors.locality}</p>}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-3 mt-2">
             <button className="flex items-center text-blue-600 font-medium hover:underline transition-all duration-200">
               <img
                 src="https://cdn-icons-png.flaticon.com/512/684/684908.png"
@@ -92,35 +93,33 @@ const LocalityDetails = () => {
           />
           {errors.landmark && <p className="text-red-500 text-xs">{errors.landmark}</p>}
         </div>
-
-        {/* GPS Location */}
-
       </div>
 
-      {/* Mark Locality on Map */}
+      {/* Map Section */}
       <div className="mt-8">
-        <h3 className="text-md mb-3 flex items-center space-x-2 text-gray-700">
-          <img
-            src="https://assets.nobroker.in/common/img/location_picker.png"
-            alt="Location Picker"
-            className="w-6 h-6"
-          />
-          <span>Mark Locality on Map</span>
+        <h3 className="text-lg mb-3 flex items-center text-gray-700 font-semibold">
+          <FaMapMarkerAlt className="mr-2 text-teal-600" /> Mark Locality on Map
         </h3>
-        <p className="text-gray-600 text-sm mb-5">
+        <p className="text-gray-600 text-sm mb-4">
           Set property location by using the search box and moving the map.
         </p>
 
-        {/* Search Box */}
         <input
           type="text"
           placeholder="Search your society or nearest landmark"
-          className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 mb-4"
+          className="w-full p-3 mb-8 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 text-gray-700 "
         />
 
-        {/* Placeholder for Map */}
-        <div className="mt-4 w-full h-72 bg-gray-200 flex items-center justify-center rounded-lg shadow-inner">
-          <p className="text-gray-500 text-lg">[Map will be embedded here]</p>
+        <div className="w-full h-72 mt-4 bg-gray-200 flex items-center justify-center rounded-lg shadow-inner">
+          <div className="w-full h-[350px] rounded-lg overflow-hidden shadow-lg">
+            <iframe
+              className="w-full h-full border-0"
+              src="https://www.google.com/maps/embed/v1/place?q=Yogeshwar+Arcade,+Near+PGI+Hotel,+New+Nana+Peth,+Pune-411002,+Maharashtra,+India&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+              allowFullScreen=""
+              aria-hidden="false"
+              tabIndex="0"
+            ></iframe>
+          </div>
         </div>
       </div>
     </div>
