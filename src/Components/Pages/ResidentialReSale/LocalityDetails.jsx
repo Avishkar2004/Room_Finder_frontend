@@ -39,8 +39,8 @@ const LocalityDetails = () => {
   return (
     <div className="max-w-3xl mx-auto p-8 bg-white shadow-lg rounded-lg">
       {/* City */}
+      <h1 className="text-sm font-semibold text-[#009587]">Provide Location Details</h1>
       <div className="border-t border-gray-300 my-4"></div>
-
       <div className="mb-6">
         <label className="block text-gray-700 font-medium mb-2">City *</label>
         <select
