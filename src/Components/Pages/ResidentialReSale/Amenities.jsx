@@ -1,12 +1,13 @@
 import React, { useState } from "react";
+import { FaDumbbell, FaBolt, FaShieldAlt } from "react-icons/fa"; // FontAwesome Icons
 
 const Amenities = () => {
     const [bathrooms, setBathrooms] = useState(0);
     const [balcony, setBalcony] = useState(0);
     const [gym, setGym] = useState(false);
-    const [nonVegAllowed, setNonVegAllowed] = useState(false);
     const [gatedSecurity, setGatedSecurity] = useState(false);
     const [moreProperties, setMoreProperties] = useState(false);
+    const [powerBackup, setPowerBackup] = useState("No");
 
 
     const increment = (setter) => setter((prev) => prev + 1);
@@ -16,7 +17,7 @@ const Amenities = () => {
         <div className="space-y-6">
             <div>
                 <h1 className="text-sm font-semibold text-[#009587]">
-                    Provide additional details about your property to get maximum visibility
+                    Provide additional details about your property to get maximum visibilty
                 </h1>
                 <div className="border-t border-gray-300 my-4"></div>
             </div>
@@ -89,72 +90,70 @@ const Amenities = () => {
                 </div>
             </div>
 
-            {/* Gym, Non-Veg Allowed, Gated Security */}
-            <div className="grid grid-cols-3 gap-5">
-                <div className="flex items-center border border-gray-300 rounded-md">
-                    <img src="https://assets.nobroker.in/nb-new/public/Pyp-Form/gym_black_new.svg" alt="Gym" />
-                    <label className="flex-grow text-center text-gray-700 text-sm mb-2">Gym*</label>
-                    <div className="flex items-center space-x-2 ml-auto">
-                        <button
-                            onClick={() => setGym(false)}
-                            className={`px-1 py-1 rounded-md border transition ${!gym ? "bg-[#fff0f2] border-[#fd3752] text-[#fd3752]" : "bg-white text-gray-600"}`}
-                        >
-                            No
-                        </button>
-                        <button
-                            onClick={() => setGym(true)}
-                            className={`px-1 py-1 rounded-md border transition ${gym ? "bg-[#ebfffd] text-[#159587] border-[#159587]" : "bg-white text-gray-600"}`}
-                        >
-                            Yes
-                        </button>
+            {/* Gym, Power Backup, Gated Security */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 p-1">
+                {/* Gym Section */}
+                <div className="flex items-center border border-gray-300 rounded-md p-1 space-x-2">
+                    <img src="https://assets.nobroker.in/nb-new/public/Pyp-Form/gym_black_new.svg" alt="Gym" className="w-6 h-6" />
+                    <div className="flex-grow text-xs">
+                        <label className="block text-gray-700 mb-1">Gym*</label>
+                        <div className="flex space-x-1">
+                            <button
+                                onClick={() => setGym(false)}
+                                className={`px-2 py-1 text-xs rounded-md border transition-all duration-200 ${gym === false ? "bg-[#fff0f2] border-[#fd3752] text-[#fd3752]" : "bg-white text-gray-600 hover:bg-gray-100"}`}
+                            >
+                                No
+                            </button>
+                            <button
+                                onClick={() => setGym(true)}
+                                className={`px-2 py-1 text-xs rounded-md border transition-all duration-200 ${gym === true ? "bg-[#ebfffd] text-[#159587] border-[#159587]" : "bg-white text-gray-600 hover:bg-gray-100"}`}
+                            >
+                                Yes
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-
-                <div className="flex items-center border border-gray-300 rounded-md">
-                    <img src="https://assets.nobroker.in/static/img/postYourProperty/icon/nonveg.png" alt="Non-veg" />
-                    <label className="flex-grow text-center text-gray-700 mb-2 text-sm">
-                        Non-Veg Allowed*</label>
-                    <div className="flex items-center space-x-2">
-                        <button
-                            onClick={() => setNonVegAllowed(false)}
-                            className={`px-2 py-1 rounded-sm border transition ${!nonVegAllowed ? "bg-[#fff0f2] border-[#fd3752] text-[#fd3752]" : "bg-white text-gray-600"
-                                }`}
+                {/* Power Backup Section */}
+                <div className="flex items-center border border-gray-300 rounded-md p-1 space-x-2">
+                    <img src="https://assets.nobroker.in/static/img/postYourProperty/icon/powerbackup_dark.png" alt="Power Backup" className="w-6 h-6" />
+                    <div className="flex-grow text-xs">
+                        <label className="block text-gray-700 mb-1">Power Backup*</label>
+                        <select
+                            value={powerBackup}
+                            onChange={(e) => setPowerBackup(e.target.value)}
+                            className="border rounded-md px-2 py-1 text-xs text-gray-700 bg-white focus:outline-none focus:ring-1 focus:ring-gray-400 w-full"
                         >
-                            No
-                        </button>
-                        <button
-                            onClick={() => setNonVegAllowed(true)}
-                            className={`px-1 py-1 rounded-sm border transition ${nonVegAllowed ? "bg-[#ebfffd] text-[#159587] border-[#159587]" : "bg-white text-gray-600"
-                                }`}
-                        >
-                            Yes
-                        </button>
+                            <option value="" disabled>Select</option>
+                            <option value="No">No</option>
+                            <option value="Partial">Partial</option>
+                            <option value="Full">Full</option>
+                        </select>
                     </div>
                 </div>
-                <div className="flex items-center border border-gray-300 rounded-md">
-                    <img src="https://assets.nobroker.in/static/img/postYourProperty/icon/security.png" alt="Gated Security" />
-                    <label className="flex-grow text-center text-gray-700 font-medium mb-2 text-sm">
-                        Gated Security*</label>
-                    <div className="flex items-center space-x-2">
-                        <button
-                            onClick={() => setGatedSecurity(false)}
-                            className={`px-2 py-1 rounded-sm border transition ${!gatedSecurity ? "bg-[#fff0f2] border-[#fd3752] text-[#fd3752]" : "bg-white text-gray-600"
-                                }`}
-                        >
-                            No
-                        </button>
-                        <button
-                            onClick={() => setGatedSecurity(true)}
-                            className={`px-1 py-1 rounded-sm border transition ${gatedSecurity ? "bg-[#ebfffd] text-[#159587] border-[#159587]" : "bg-white text-gray-600"
-                                }`}
-                        >
-                            Yes
-                        </button>
+
+                {/* Gated Security Section */}
+                <div className="flex items-center border border-gray-300 rounded-md p-1 space-x-2">
+                    <img src="https://assets.nobroker.in/static/img/postYourProperty/icon/security.png" alt="Gated Security" className="w-6 h-6" />
+                    <div className="flex-grow text-xs">
+                        <label className="block text-gray-700 mb-1">Gated Security*</label>
+                        <div className="flex space-x-1">
+                            <button
+                                onClick={() => setGatedSecurity(false)}
+                                className={`px-2 py-1 text-xs rounded-md border transition-all duration-200 ${gatedSecurity === false ? "bg-[#fff0f2] border-[#fd3752] text-[#fd3752]" : "bg-white text-gray-600 hover:bg-gray-100"}`}
+                            >
+                                No
+                            </button>
+                            <button
+                                onClick={() => setGatedSecurity(true)}
+                                className={`px-2 py-1 text-xs rounded-md border transition-all duration-200 ${gatedSecurity === true ? "bg-[#ebfffd] text-[#159587] border-[#159587]" : "bg-white text-gray-600 hover:bg-gray-100"}`}
+                            >
+                                Yes
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-
             <div className="mb-1 flex space-x-4">
                 <div className="flex-1">
                     <label className="block text-gray-600 text-sm font-semibold mb-2">Who will show the property?*</label>
@@ -219,13 +218,10 @@ const Amenities = () => {
             </div>
             <div className="mb-1 flex space-x-2">
                 <div className="flex-1">
-                    <label className="block text-gray-600 text-sm font-semibold mb-2">Add Directions Tip for your tenants
+                    <label className="block text-gray-600 text-sm font-semibold mb-2">Add Directions Tip for your buyers
                     </label>
                     <div className="border-gray-300 rounded-lg p-2">
                         <div className="flex flex-col space-y-2 w-full">
-                            <div className="text-sm text-gray-500">
-                                <p>Don't want calls asking for location? Add directions to reach using landmarks</p>
-                            </div>
                             <input
                                 type="text"
                                 placeholder="Eg. Take the road opposite to Amrita College, take right after 300m..."
@@ -242,109 +238,80 @@ const Amenities = () => {
                     Select the available amenities
                 </label>
 
-                <div className="grid grid-cols-2 gap-4 mt-4">
-                    {/* Option 1 */}
-                    <div className="flex items-center space-x-2">
-                        <input type="checkbox" id="lift" name="amenities" value="Lift" className="h-4 w-4 text-[#159587]" />
-                        <label htmlFor="lift" className="text-gray-700">Lift</label>
-                    </div>
-
-                    {/* Option 2 */}
-                    <div className="flex items-center space-x-2">
-                        <input type="checkbox" id="internet" name="amenities" value="Internet Services" className="h-4 w-4 text-[#159587]" />
-                        <label htmlFor="internet" className="text-gray-700">Internet Services</label>
-                    </div>
-
-                    {/* Option 3 */}
-                    <div className="flex items-center space-x-2">
-                        <input type="checkbox" id="ac" name="amenities" value="Air Conditioner" className="h-4 w-4 text-[#159587]" />
-                        <label htmlFor="ac" className="text-gray-700">Air Conditioner</label>
-                    </div>
-
-                    {/* Option 4 */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 mt-4">
+                    {/* Club House */}
                     <div className="flex items-center space-x-2">
                         <input type="checkbox" id="club-house" name="amenities" value="Club House" className="h-4 w-4 text-[#159587]" />
-                        <label htmlFor="club-house" className="text-gray-700">Club House</label>
+                        <label htmlFor="club-house" className="text-sm text-gray-700">Club House</label>
                     </div>
 
-                    {/* Option 5 */}
-                    <div className="flex items-center space-x-2">
-                        <input type="checkbox" id="intercom" name="amenities" value="Intercom" className="h-4 w-4 text-[#159587]" />
-                        <label htmlFor="intercom" className="text-gray-700">Intercom</label>
-                    </div>
-
-                    {/* Option 6 */}
+                    {/* Swimming Pool */}
                     <div className="flex items-center space-x-2">
                         <input type="checkbox" id="swimming-pool" name="amenities" value="Swimming Pool" className="h-4 w-4 text-[#159587]" />
-                        <label htmlFor="swimming-pool" className="text-gray-700">Swimming Pool</label>
+                        <label htmlFor="swimming-pool" className="text-sm text-gray-700">Swimming Pool</label>
                     </div>
 
-                    {/* Option 7 */}
+                    {/* Lift */}
                     <div className="flex items-center space-x-2">
-                        <input type="checkbox" id="children-play" name="amenities" value="Children Play Area" className="h-4 w-4 text-[#159587]" />
-                        <label htmlFor="children-play" className="text-gray-700">Children Play Area</label>
+                        <input type="checkbox" id="lift" name="amenities" value="Lift" className="h-4 w-4 text-[#159587]" />
+                        <label htmlFor="lift" className="text-sm text-gray-700">Lift</label>
                     </div>
 
-                    {/* Option 8 */}
+                    {/* Fire Safety */}
                     <div className="flex items-center space-x-2">
                         <input type="checkbox" id="fire-safety" name="amenities" value="Fire Safety" className="h-4 w-4 text-[#159587]" />
-                        <label htmlFor="fire-safety" className="text-gray-700">Fire Safety</label>
+                        <label htmlFor="fire-safety" className="text-sm text-gray-700">Fire Safety</label>
                     </div>
 
-                    {/* Option 9 */}
+                    {/* Intercom */}
                     <div className="flex items-center space-x-2">
-                        <input type="checkbox" id="servant-room" name="amenities" value="Servant Room" className="h-4 w-4 text-[#159587]" />
-                        <label htmlFor="servant-room" className="text-gray-700">Servant Room</label>
+                        <input type="checkbox" id="intercom" name="amenities" value="Intercom" className="h-4 w-4 text-[#159587]" />
+                        <label htmlFor="intercom" className="text-sm text-gray-700">Intercom</label>
                     </div>
 
-                    {/* Option 10 */}
+                    {/* Children Play Area */}
+                    <div className="flex items-center space-x-2">
+                        <input type="checkbox" id="children-play" name="amenities" value="Children Play Area" className="h-4 w-4 text-[#159587]" />
+                        <label htmlFor="children-play" className="text-sm text-gray-700">Children Play Area</label>
+                    </div>
+
+                    {/* Shopping Center */}
                     <div className="flex items-center space-x-2">
                         <input type="checkbox" id="shopping-center" name="amenities" value="Shopping Center" className="h-4 w-4 text-[#159587]" />
-                        <label htmlFor="shopping-center" className="text-gray-700">Shopping Center</label>
+                        <label htmlFor="shopping-center" className="text-sm text-gray-700">Shopping Center</label>
                     </div>
 
-                    {/* Option 11 */}
-                    <div className="flex items-center space-x-2">
-                        <input type="checkbox" id="gas-pipeline" name="amenities" value="Gas Pipeline" className="h-4 w-4 text-[#159587]" />
-                        <label htmlFor="gas-pipeline" className="text-gray-700">Gas Pipeline</label>
-                    </div>
-
-                    {/* Option 12 */}
+                    {/* Park */}
                     <div className="flex items-center space-x-2">
                         <input type="checkbox" id="park" name="amenities" value="Park" className="h-4 w-4 text-[#159587]" />
-                        <label htmlFor="park" className="text-gray-700">Park</label>
+                        <label htmlFor="park" className="text-sm text-gray-700">Park</label>
                     </div>
 
-                    {/* Option 13 */}
-                    <div className="flex items-center space-x-2">
-                        <input type="checkbox" id="rain-water" name="amenities" value="Rain Water Harvesting" className="h-4 w-4 text-[#159587]" />
-                        <label htmlFor="rain-water" className="text-gray-700">Rain Water Harvesting</label>
-                    </div>
-
-                    {/* Option 14 */}
+                    {/* Sewage Treatment Plant */}
                     <div className="flex items-center space-x-2">
                         <input type="checkbox" id="sewage-treatment" name="amenities" value="Sewage Treatment Plant" className="h-4 w-4 text-[#159587]" />
-                        <label htmlFor="sewage-treatment" className="text-gray-700">Sewage Treatment Plant</label>
+                        <label htmlFor="sewage-treatment" className="text-sm text-gray-700">Sewage Treatment Plant</label>
                     </div>
 
-                    {/* Option 15 */}
-                    <div className="flex items-center space-x-2">
-                        <input type="checkbox" id="house-keeping" name="amenities" value="House Keeping" className="h-4 w-4 text-[#159587]" />
-                        <label htmlFor="house-keeping" className="text-gray-700">House Keeping</label>
-                    </div>
-
-                    {/* Option 16 */}
-                    <div className="flex items-center space-x-2">
-                        <input type="checkbox" id="power-backup" name="amenities" value="Power Backup" className="h-4 w-4 text-[#159587]" />
-                        <label htmlFor="power-backup" className="text-gray-700">Power Backup</label>
-                    </div>
-
-                    {/* Option 17 */}
+                    {/* Visitor Parking */}
                     <div className="flex items-center space-x-2">
                         <input type="checkbox" id="visitor-parking" name="amenities" value="Visitor Parking" className="h-4 w-4 text-[#159587]" />
-                        <label htmlFor="visitor-parking" className="text-gray-700">Visitor Parking</label>
+                        <label htmlFor="visitor-parking" className="text-sm text-gray-700">Visitor Parking</label>
+                    </div>
+
+                    {/* Gas Pipeline */}
+                    <div className="flex items-center space-x-2">
+                        <input type="checkbox" id="gas-pipeline" name="amenities" value="Gas Pipeline" className="h-4 w-4 text-[#159587]" />
+                        <label htmlFor="gas-pipeline" className="text-sm text-gray-700">Gas Pipeline</label>
+                    </div>
+
+                    {/* Internet Provider */}
+                    <div className="flex items-center space-x-2">
+                        <input type="checkbox" id="internet-provider" name="amenities" value="Internet Provider" className="h-4 w-4 text-[#159587]" />
+                        <label htmlFor="internet-provider" className="text-sm text-gray-700">Internet Provider</label>
                     </div>
                 </div>
+
             </div>
         </div>
     );
