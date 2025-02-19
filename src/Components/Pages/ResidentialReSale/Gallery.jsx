@@ -1,4 +1,6 @@
 import React, { useRef, useState } from 'react';
+import { CiStar } from "react-icons/ci";
+import { FaStar } from 'react-icons/fa'; // Filled star icon
 
 const Gallery = () => {
   // Reference for the file input
@@ -15,7 +17,9 @@ const Gallery = () => {
     const files = Array.from(event.target.files)
     const imagePreviews = files.map((file) => ({
       id: URL.createObjectURL(file), // Creating a unique URL for preview
-      file
+      file,
+      type: "", // Store selected picute type
+      isFavorite: false // Track if the image is favorites
     }))
     setImages((prevImages) => [...prevImages, ...imagePreviews]) // Append new images
   }
@@ -23,6 +27,24 @@ const Gallery = () => {
   // Function to delete an image
   const handleDeleteImage = (id) => {
     setImages(images.filter((image) => image.id !== id))
+  }
+
+  // Function to update the image type (kitchen , bedroom)
+  const handleImageTypeChange = (id) => {
+    setImages(
+      images.map((image) =>
+        image.id === id ? { ...image, isFavorite: !image.isFavorite } : image
+      )
+    )
+  }
+
+  // Function to toggle favorite ⭐
+  const handleToggleFavorite = (id) => {
+    setImages(
+      images.map((image) =>
+        image.id === id ? { ...image, isFavorite: !image.isFavorite } : image
+      )
+    );
   }
 
   return (
@@ -61,6 +83,7 @@ const Gallery = () => {
             ref={fileInputRef}
             type="file"
             accept='image/*'
+            multiple
             onChange={handleFileChanges} // Handle file change
             className='hidden'
           />
@@ -68,31 +91,60 @@ const Gallery = () => {
 
         {/* Preview Uploaded Images */}
         {images.length > 0 && (
-          <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {images.map((image) => (
-              <div key={image.id} className="relative group border rounded-lg p-2 bg-white shadow-md">
-                {/* Image Preview */}
-                <img src={image.id} alt="Preview" className="w-full h-32 object-cover rounded-md" />
+          <div className="mt-6">
+            {/* Improved Heading for "Photos added by you" */}
+            <div className="flex items-center justify-between px-2 py-2 bg-gray-100 rounded-md shadow-sm">
+              <h2 className="text-sm font-semibold text-gray-700">
+                📸 Photos added by you <span className="text-[#009587]">({images.length})</span>
+              </h2>
+            </div>
 
-                {/* Action Buttons */}
-                <div className="mt-2 flex justify-between">
-                  <button className="text-xs bg-gray-200 p-1 rounded">✏️ Edit</button>
-                  <button className="text-xs bg-gray-200 p-1 rounded">📂 Move</button>
-                  <button className="text-xs bg-gray-200 p-1 rounded">⭐ Favorite</button>
-                  <button className="text-xs bg-gray-200 p-1 rounded">🔗 Share</button>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+              {images.map((image) => (
+                <div key={image.id} className="relative group border rounded-lg p-2 bg-white shadow-md">
+                  {/* Image Preview */}
+                  <img src={image.id} alt="Preview" className="w-full h-40 object-cover rounded-md" />
+
+                  {/* Select Picture Type Dropdown */}
+                  <select
+                    className="w-full mt-2 border rounded-md p-1 text-sm"
+                    value={image.type}
+                    onChange={(e) => handleImageTypeChange(image.id, e.target.value)}
+                  >
+                    <option value="">Select Type</option>
+                    <option value="Kitchen">Kitchen</option>
+                    <option value="Bedroom">Bedroom</option>
+                    <option value="Living Room">Living Room</option>
+                  </select>
+
+                  {/* Action Buttons */}
+                  <div className="mt-2 flex justify-between items-center">
+                    {/* Star Button */}
+                    <button
+                      className="text-xs p-2 rounded-full"
+                      onClick={() => handleToggleFavorite(image.id)}
+                    >
+                      {image.isFavorite ? (
+                        <FaStar className="text-green-500 text-lg" /> // Green when selected
+                      ) : (
+                        <CiStar className="text-gray-800 text-lg" /> // Gray when not selected
+                      )}
+                    </button>
+
+                    {/* Delete Button */}
+                    <button
+                      className="text-xs bg-red-500 text-white p-1 rounded"
+                      onClick={() => handleDeleteImage(image.id)}
+                    >
+                      ❌ Delete
+                    </button>
+                  </div>
                 </div>
-
-                {/* Delete Button */}
-                <button
-                  className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full text-xs opacity-0 group-hover:opacity-100 transition-opacity"
-                  onClick={() => handleDeleteImage(image.id)}
-                >
-                  ❌
-                </button>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         )}
+
 
         {/* OR Section with Borders */}
         <div className="flex items-center my-4">
