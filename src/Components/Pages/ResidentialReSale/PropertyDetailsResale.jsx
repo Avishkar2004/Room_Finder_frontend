@@ -7,6 +7,7 @@ import PropertyDetails from "./PropertyDetails";
 import RentalDetails from "./RentalDetails";
 import Schedule from "./Schedule";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import AdditionalInformation from "./AdditionalInformation";
 
 const PropertyDetailsResale = () => {
     const navigate = useNavigate(); // Initialize useNavigate
@@ -83,6 +84,7 @@ const PropertyDetailsResale = () => {
                             { name: "Resale Details", key: "ResaleDetails", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/Business.png" },
                             { name: "Amenities", key: "Amenities", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/KitchenOutlined.png" },
                             { name: "Gallery", key: "Gallery", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/LinkedCameraOutlined.png" },
+                            { name: "Additional Information", key: "AdditionalInformation", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/Description.png" },
                             { name: "Schedule", key: "Schedule", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/DateRangeOutlined.png" },
                         ].map((item) => (
                             <li
@@ -109,6 +111,7 @@ const PropertyDetailsResale = () => {
                     {selectedTab === "ResaleDetails" && <RentalDetails />}
                     {selectedTab === "Amenities" && <Amenities />}
                     {selectedTab === "Gallery" && <Gallery />}
+                    {selectedTab === "AdditionalInformation" && <AdditionalInformation />}
                     {selectedTab === "Schedule" && <Schedule />}
 
                     <div className="mt-auto">

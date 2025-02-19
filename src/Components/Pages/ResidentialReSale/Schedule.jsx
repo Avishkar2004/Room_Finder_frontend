@@ -40,14 +40,14 @@ const Schedule = () => {
       {/* Heading Section */}
       <div>
         <h1 className="text-sm font-semibold  text-[#009587]">
-          Provide your availability and make house visits hassle-free
+          Make house visits hassle-free by providing us your availability
         </h1>
       </div>
       <div className="border-t border-gray-300 my-4"></div>
 
       {/* Painting and Cleaning Services Section */}
       <div className="flex mt-7 justify-between gap-8 flex-col sm:flex-row">
-        <div className="w-full sm:w-1/2 lg:w-1/2 bg-white border p-4 rounded-lg shadow-lg">
+        <div className="w-full sm:w-1/2 lg:w-1/2 bg-white border p-4 ">
           <div className="flex items-center gap-4">
             {/* Text Section */}
             <div className="flex flex-col justify-center">
@@ -85,7 +85,7 @@ const Schedule = () => {
           </div>
         </div>
         {/* Cleaning Service Section */}
-        <div className="w-full sm:w-1/2 lg:w-1/2 bg-white border p-4 rounded-lg shadow-lg">
+        <div className="w-full sm:w-1/2 lg:w-1/2 bg-white border p-4 ">
           <div className="flex items-center gap-4">
             {/* Text Section */}
             <div className="flex flex-col justify-center">
