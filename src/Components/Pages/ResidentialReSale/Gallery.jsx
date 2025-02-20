@@ -18,7 +18,7 @@ const Gallery = () => {
     const imagePreviews = files.map((file) => ({
       id: URL.createObjectURL(file), // Creating a unique URL for preview
       file,
-      type: "", // Store selected picute type
+      type: "", // Store selected picture type
       isFavorite: false // Track if the image is favorites
     }))
     setImages((prevImages) => [...prevImages, ...imagePreviews]) // Append new images
@@ -30,10 +30,10 @@ const Gallery = () => {
   }
 
   // Function to update the image type (kitchen , bedroom)
-  const handleImageTypeChange = (id) => {
+  const handleImageTypeChange = (id, selectedType) => {
     setImages(
       images.map((image) =>
-        image.id === id ? { ...image, isFavorite: !image.isFavorite } : image
+        image.id === id ? { ...image, type: selectedType } : image
       )
     )
   }
@@ -115,6 +115,12 @@ const Gallery = () => {
                     <option value="Bedroom">Bedroom</option>
                     <option value="Living Room">Living Room</option>
                   </select>
+
+                  {image.type && (
+                    <p className='text-xs mt-1 text-center text-gray-600 font-semibold'>
+                      Selected:{image.type}
+                    </p>
+                  )}
 
                   {/* Action Buttons */}
                   <div className="mt-2 flex justify-between items-center">

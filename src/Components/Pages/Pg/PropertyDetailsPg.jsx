@@ -4,7 +4,7 @@ import Gallery from "./Gallery";
 import LocalityDetails from "./LocalityDetails";
 import ProgressBar from "./ProgressBar"; // Assuming ProgressBar is a separate component
 import RoomDetails from "./RoomDetails";
-import RentalDetails from "./RentalDetails";
+import PGDetails from "./PGDetails";
 import Schedule from "./Schedule";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 
@@ -19,7 +19,7 @@ const PropertyDetailsPg = () => {
     const tabProgress = {
         RoomDetails: 16.66,
         LocalityDetails: 33.33,
-        RentalDetails: 50,
+        PGDetails: 50,
         Amenities: 66.66,
         Gallery: 83.33,
         Schedule: 100
@@ -33,7 +33,7 @@ const PropertyDetailsPg = () => {
             case "LocalityDetails":
                 return LocalityDetails.validateForm ? LocalityDetails.validateForm() : false // Similarly for other components
             case "RentalDetails":
-                return RentalDetails.validateForm ? RentalDetails.validateForm() : false;
+                return PGDetails.validateForm ? PGDetails.validateForm() : false;
             case "Amenities":
                 return Amenities.validateForm();
             case "Gallery":
@@ -80,7 +80,7 @@ const PropertyDetailsPg = () => {
                         {[
                             { name: "Room Details", key: "RoomDetails", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/HomeOutlined.png" },
                             { name: "Locality Details", key: "LocalityDetails", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/PinDropOutlined.png" },
-                            { name: "Rental Details", key: "RentalDetails", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/Business.png" },
+                            { name: "PG Details", key: "PGDetails", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/Business.png" },
                             { name: "Amenities", key: "Amenities", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/KitchenOutlined.png" },
                             { name: "Gallery", key: "Gallery", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/LinkedCameraOutlined.png" },
                             { name: "Schedule", key: "Schedule", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/DateRangeOutlined.png" },
@@ -106,7 +106,7 @@ const PropertyDetailsPg = () => {
                     {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
                     {selectedTab === "RoomDetails" && <RoomDetails />}
                     {selectedTab === "LocalityDetails" && <LocalityDetails />}
-                    {selectedTab === "RentalDetails" && <RentalDetails />}
+                    {selectedTab === "PGDetails" && <PGDetails />}
                     {selectedTab === "Amenities" && <Amenities />}
                     {selectedTab === "Gallery" && <Gallery />}
                     {selectedTab === "Schedule" && <Schedule />}
