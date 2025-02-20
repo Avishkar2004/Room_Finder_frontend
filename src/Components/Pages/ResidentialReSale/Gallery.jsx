@@ -48,7 +48,7 @@ const Gallery = () => {
   }
 
   return (
-    <div className="flex justify-center items-center w-full">
+    <div className="flex justify-center  items-center w-full">
       <div className="w-full">
         <div className="flex items-center justify-between space-x-2">
           <h1 className="text-sm font-semibold text-[#009587]">Upload photos & videos</h1>
@@ -61,7 +61,6 @@ const Gallery = () => {
             <span>Upload through phone</span>
           </div>
         </div>
-
         <div className="border-t border-gray-300 my-4"></div>
         <div className="bg-gray-100 border p-10 flex flex-col items-center text-center rounded-lg cursor-pointer" onClick={handleAddPhotosClick}>
           <img

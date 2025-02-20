@@ -2,7 +2,7 @@ import React from 'react';
 
 const Gallery = () => {
   return (
-    <div className="flex justify-center items-center p-4 w-full">
+    <div className="flex justify-center items-center w-full">
       <div className="w-full">
         <h1 className="text-sm font-semibold  text-[#009587]">
           Upload photos & videos

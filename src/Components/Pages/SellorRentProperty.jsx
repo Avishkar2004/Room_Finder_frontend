@@ -276,7 +276,6 @@ const SellorRentProperty = () => {
               </div>
             </div>
           </div>
-
           <div className="border p-4 sm:p-10">
             {/* Ad Type Selection for Resident */}
             {selectedPropertyType === "Resident" && (
@@ -288,7 +287,7 @@ const SellorRentProperty = () => {
                   Select Property Ad Type
                 </label>
                 <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mt-2">
-                  {["Rent", "Resale", "PG&#47;Hostel", "Flatmates"].map((type) => (
+                  {["Rent", "Resale", "PG/Hostel", "Flatmates"].map((type) => (
                     <button
                       key={type}
                       type="button"
@@ -298,10 +297,8 @@ const SellorRentProperty = () => {
                     />
                   ))}
                 </div>
-
               </div>
             )}
-
             {selectedPropertyType === "Commercial" && (
               <div className="flex flex-col justify-center items-center">
                 <label
@@ -325,7 +322,6 @@ const SellorRentProperty = () => {
                 </div>
               </div>
             )}
-
             {selectedPropertyType === "LandPlot" && (
               <div className="flex flex-col justify-center items-center">
                 <label
@@ -347,9 +343,7 @@ const SellorRentProperty = () => {
               </div>
             )}
           </div>
-
           <div className="flex justify-center w-full mt-4">
-
             <Link
               to={`/property/${selectedPropertyType.toLocaleLowerCase()}/${selectedAdType.toLocaleLowerCase()}`}
               type="submit"

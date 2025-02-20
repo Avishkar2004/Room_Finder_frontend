@@ -36,7 +36,7 @@ const Schedule = () => {
   }
 
   return (
-    <div className='p-4'>
+    <div>
       {/* Heading Section */}
       <div>
         <h1 className="text-sm font-semibold  text-[#009587]">

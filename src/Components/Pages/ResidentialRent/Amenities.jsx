@@ -13,7 +13,7 @@ const Amenities = () => {
     const decrement = (setter) => setter((prev) => (prev > 0 ? prev - 1 : 0));
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 p-4">
             <div>
                 <h1 className="text-sm font-semibold text-[#009587]">
                     Provide additional details about your property to get maximum visibility

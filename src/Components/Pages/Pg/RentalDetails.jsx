@@ -63,7 +63,7 @@ const RentalDetails = () => {
     }
 
     return (
-        <div className='p-4'>
+        <div>
             <h1 className="text-sm font-semibold  text-[#009587]">Provide rental details about your property
             </h1>
             <div className="border-t border-gray-300 my-4"></div>
