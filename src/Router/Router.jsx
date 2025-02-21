@@ -22,6 +22,7 @@ import ConfirmationRent from '../Components/Pages/confirmationRent';
 import PropertyDetailsRent from '../Components/Pages/ResidentialRent/PropertyDetailsRent';
 import PropertyDetailsResale from '../Components/Pages/ResidentialReSale/PropertyDetailsResale';
 import PropertyDetailsPg from '../Components/Pages/Pg/PropertyDetailsPg';
+import PropertyDetailsFlatmate from '../Components/Pages/ResidentialFlatmate/PropertyDetailsFlatmate';
 
 const AppRouter = () => {
     return (
@@ -37,6 +38,7 @@ const AppRouter = () => {
                 <Route path='/property/resident/rent' element={<PropertyDetailsRent />} />
                 <Route path='/property/resident/resale' element={<PropertyDetailsResale />} />
                 <Route path="/property/resident/pg/hostel" element={<PropertyDetailsPg />} />
+                <Route path="/property/resident/flatmates" element={<PropertyDetailsFlatmate />} />
                 <Route path="/confirmation-rent" element={<ConfirmationRent />} />
             </Routes>
             <ConditionalCarousel />
