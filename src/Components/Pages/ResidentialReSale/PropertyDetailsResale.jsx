@@ -70,14 +70,15 @@ const PropertyDetailsResale = () => {
 
 
     return (
-        <div className="flex flex-col justify-center items-center bg-gray-100">
-            <div className="w-full  mt-[2px]">
+        <div className="flex flex-col justify-center items-center bg-gray-100 min-h-screen p-4">
+            <div className="w-full mt-2">
                 <ProgressBar progress={tabProgress[selectedTab]} />
             </div>
-            <div className="flex mt-4 bg-white p-2 rounded-lg shadow-lg w-[80%]">
+
+            <div className="flex flex-col md:flex-row mt-4 bg-white p-2 rounded-lg shadow-lg w-full md:w-[90%] lg:w-[80%]">
                 {/* Left Sidebar */}
-                <div className="w-[20%] p-4 rounded-l-lg shadow-lg text-gray-600">
-                    <ul className="space-y-6">
+                <div className="w-full md:w-[25%] lg:w-[20%] p-4 rounded-l-lg shadow-lg text-gray-600">
+                    <ul className="space-y-4 md:space-y-6">
                         {[
                             { name: "Property Details", key: "PropertyDetails", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/HomeOutlined.png" },
                             { name: "Locality Details", key: "LocalityDetails", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/PinDropOutlined.png" },
@@ -96,15 +97,14 @@ const PropertyDetailsResale = () => {
                                 onClick={() => setSelectedTab(item.key)}
                             >
                                 <img src={item.icon} alt={item.name} className="w-6 h-6 mr-3" />
-                                <span>{item.name}</span>
+                                <span className="text-sm md:text-base">{item.name}</span>
                             </li>
                         ))}
                     </ul>
                 </div>
 
-
                 {/* Right Side Details */}
-                <div className="flex-1 p-4 flex-col">
+                <div className="flex-1 p-4 flex flex-col">
                     {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
                     {selectedTab === "PropertyDetails" && <PropertyDetails />}
                     {selectedTab === "LocalityDetails" && <LocalityDetails />}
@@ -115,8 +115,8 @@ const PropertyDetailsResale = () => {
                     {selectedTab === "Schedule" && <Schedule />}
 
                     <div className="mt-auto">
-
-                        <button className="w-full mt-4 px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+                        <button
+                            className="w-full mt-4 px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
                             onClick={handleNext}
                         >
                             {selectedTab === "Schedule" ? "Confirm & Proceed" : "Save and Continue"}
@@ -125,8 +125,8 @@ const PropertyDetailsResale = () => {
                 </div>
 
                 {/* Right Sidebar */}
-                <div className="w-1/6 p-6 bg-white shadow-md">
-                    {/* Rental Agreement and No Need to Visit Government Office */}
+                <div className="w-full md:w-[30%] lg:w-1/6 p-6 bg-white shadow-md mt-4 md:mt-0">
+                    {/* Rental Agreement */}
                     <div className="flex flex-col items-center p-4 border border-gray-200">
                         <div className="flex flex-col items-center hover:shadow-sm transition-shadow duration-200 w-full">
                             <div className="text-center">
@@ -135,51 +135,41 @@ const PropertyDetailsResale = () => {
                             </div>
                             <img src="https://assets.nobroker.in/nb-new/public/Pyp-Form/rentalAgreement.png" alt="Rental Agreement" className="w-12 h-12" />
                         </div>
-                        {/* No Need to Visit Government Office Section */}
-                        <div className="flex flex-col items-center  w-full">
+                        {/* No Need to Visit Government Office */}
+                        <div className="flex flex-col items-center w-full mt-2">
                             <div className="text-center">
                                 <span className="text-xs text-gray-600">No need to visit Government office</span>
                                 <span className="block text-md font-semibold mt-1 bg-[#009587] px-2 py-2 text-gray-800">Get it now</span>
                             </div>
                         </div>
                     </div>
-                    {/* Get Tenants Faster and Other Features */}
+
+                    {/* Get Tenants Faster and Features */}
                     <div className="flex flex-col space-y-4 p-4 border mt-2 border-gray-200">
-                        {/* Get Tenants Faster */}
                         <div className="text-center">
                             <span className="text-sm text-gray-600">Get Tenants Faster</span>
                             <span className="block text-xs text-gray-800 mt-1">Subscribe to our owner plans and find Tenants quickly and with ease</span>
                         </div>
-                        {/* Features Grid */}
+
                         <div className="grid grid-cols-2 gap-4 mt-4">
-                            {/* Privacy */}
-                            <div className="flex flex-col items-center space-y-2 p-4 border border-gray-200 rounded-lg hover:shadow-sm transition-shadow duration-200">
-                                <img src="https://assets.nobroker.in/nb-new/public/Pyp-Form/privacyLogo.svg" alt="Privacy" className="w-8 h-8" />
-                                <span className="text-xs text-gray-800">Privacy</span>
-                            </div>
-
-                            {/* Promoted Listing */}
-                            <div className="flex flex-col items-center space-y-2 p-4 border border-gray-200 rounded-lg hover:shadow-sm transition-shadow duration-200">
-                                <img src="https://assets.nobroker.in/nb-new/public/Pyp-Form/promotedListing.svg" alt="Promoted Listing" className="w-8 h-8" />
-                                <span className="text-xs text-gray-800">Promoted Listing</span>
-                            </div>
-
-                            {/* Social Marketing */}
-                            <div className="flex flex-col items-center space-y-2 p-4 border border-gray-200 rounded-lg hover:shadow-sm transition-shadow duration-200">
-                                <img src="https://assets.nobroker.in/nb-new/public/Pyp-Form/facebookLogo.svg" alt="Social Marketing" className="w-8 h-8" />
-                                <span className="text-xs text-gray-800">Social Marketing</span>
-                            </div>
-
-                            {/* Price Consultation */}
-                            <div className="flex flex-col items-center space-y-2 p-4 border border-gray-200 rounded-lg hover:shadow-sm transition-shadow duration-200">
-                                <img src="https://assets.nobroker.in/nb-new/public/Pyp-Form/rentConsultation.svg" alt="Price Consultation" className="w-8 h-8" />
-                                <span className="text-xs text-gray-800">Price Consultation</span>
-                            </div>
+                            {/* Features Grid */}
+                            {[
+                                { img: "https://assets.nobroker.in/nb-new/public/Pyp-Form/privacyLogo.svg", text: "Privacy" },
+                                { img: "https://assets.nobroker.in/nb-new/public/Pyp-Form/promotedListing.svg", text: "Promoted Listing" },
+                                { img: "https://assets.nobroker.in/nb-new/public/Pyp-Form/facebookLogo.svg", text: "Social Marketing" },
+                                { img: "https://assets.nobroker.in/nb-new/public/Pyp-Form/rentConsultation.svg", text: "Price Consultation" }
+                            ].map((feature, index) => (
+                                <div key={index} className="flex flex-col items-center space-y-2 p-4 border border-gray-200 rounded-lg hover:shadow-sm transition-shadow duration-200">
+                                    <img src={feature.img} alt={feature.text} className="w-8 h-8" />
+                                    <span className="text-xs text-gray-800">{feature.text}</span>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     );
 };
 
