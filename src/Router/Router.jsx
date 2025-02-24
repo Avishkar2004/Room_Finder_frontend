@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Header from '../Components/Header';
 import Signup from '../Components/Signup';
@@ -24,10 +24,21 @@ import PropertyDetailsResale from '../Components/Pages/ResidentialReSale/Propert
 import PropertyDetailsPg from '../Components/Pages/Pg/PropertyDetailsPg';
 import PropertyDetailsFlatmate from '../Components/Pages/ResidentialFlatmate/PropertyDetailsFlatmate';
 
+const ScrollToTop = () => {
+    const { pathname } = useLocation()
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [pathname])
+    return null
+}
+
+
 const AppRouter = () => {
     return (
         <Router>
             <Header />
+            <ScrollToTop />
             <Routes>
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />

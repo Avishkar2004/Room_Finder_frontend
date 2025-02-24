@@ -69,16 +69,15 @@ const PropertyDetailsPg = () => {
 
 
     return (
-        <div className="flex flex-col justify-center items-center bg-gray-100 min-h-screen">
-            {/* Progress Bar */}
-            <div className="w-full mt-1">
+        <div className="flex flex-col justify-center items-center bg-gray-100">
+            <div className="w-full mt-[2px]">
                 <ProgressBar progress={tabProgress[selectedTab]} />
             </div>
 
-            <div className="flex flex-col md:flex-row mt-4 bg-white p-4 rounded-lg shadow-lg w-[90%] md:w-[80%]">
+            <div className="flex flex-col lg:flex-row mt-4 bg-white p-2 rounded-lg shadow-lg w-[95%] md:w-[90%] lg:w-[80%]">
                 {/* Left Sidebar */}
-                <div className="w-full md:w-[20%] p-4 rounded-l-lg shadow-lg text-gray-600 bg-gray-50">
-                    <ul className="space-y-4">
+                <div className="w-full md:w-[30%] lg:w-[20%] p-4 rounded-l-lg shadow-lg text-gray-600">
+                    <ul className="space-y-6">
                         {[
                             { name: "Room Details", key: "RoomDetails", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/HomeOutlined.png" },
                             { name: "Locality Details", key: "LocalityDetails", icon: "https://assets.nobroker.in/nb-new/public/MaterialIcons/PinDropOutlined.png" },

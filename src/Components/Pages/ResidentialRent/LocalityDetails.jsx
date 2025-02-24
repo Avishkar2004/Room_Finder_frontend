@@ -9,7 +9,6 @@ const LocalityDetails = () => {
 
   const [errors, setErrors] = useState({})
 
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -38,8 +37,7 @@ const LocalityDetails = () => {
   }
   return (
     <div className="max-w-3xl mx-auto p-4 bg-white shadow-lg rounded-lg">
-                  <h1 className="text-sm font-semibold text-[#009587]">Provide Location Details</h1>
-
+      <h1 className="text-sm font-semibold text-[#009587]">Provide Location Details</h1>
       {/* City */}
       <div className="border-t border-gray-300 my-4"></div>
 
